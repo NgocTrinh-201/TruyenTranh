@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/trangChu_fragment">
+    <fragment
+        android:id="@+id/trangChu_fragment"
+        android:name="com.ak.doctruyenchu.ui.TrangChu.TrangChu_fragment"
+        android:label="TRANG CHỦ"
+        tools:layout="@layout/fragment_trang_chu_fragment" />
+    <fragment
+        android:id="@+id/caNhan_fragment"
+        android:name="com.ak.doctruyenchu.ui.CaNhan.CaNhan_fragment"
+        android:label="CÁ NHÂN"
+        tools:layout="@layout/fragment_ca_nhan_fragment" />
+    <fragment
+        android:id="@+id/tu_truyen_fragment"
+        android:name="com.ak.doctruyenchu.ui.TuTruyen.TuTruyen"
+        android:label="@string/title_tu_truyen"
+        tools:layout="@layout/tu_truyen_fragment" />
+</navigation>

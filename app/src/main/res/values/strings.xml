@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Đọc truyện chữ</string>
+    <string name="title_home">Trang chủ</string>
+    <string name="title_dashboard">Cá nhân</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_tu_truyen">Tủ Truyện</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_doc_truyen">DocTruyen</string>
+    <string name="is_blank">Không được để trống</string>
+    <string name="not_correct_format">Không đúng định dạng email</string>
+    <string name="string_lenght_is_less_than_8">Tối thiểu 8 ký tự</string>
+    <string name="infor_error">Thông tin nhập lỗi</string>
+    <string name="faile_to_login">Đăng nhập thất bại</string>
+    <string name="succes_to_login">Đăng nhập thành công</string>
+    <string name="not_login">Chưa đăng nhập</string>
+    <string name="signup_success">Đăng ký thành công</string>
+    <string name="signup_failure">Đăng ký thất bại</string>
+    <string name="edit_information">Chỉnh sửa thông tin</string>
+    <string name="signout">Đăng xuất</string>
+    <string name="signin">Đăng nhập</string>
+    <string name="signup">Đăng ký</string>
+    <string name="user_name">Tên người dùng</string>
+    <string name="emai">Email</string>
+    <string name="save">Lưu</string>
+    <string name="cancel">Hủy</string>
+    <string name="select_image">Chọn hình ảnh</string>
+    <string name="update_success">Cập nhật thành công</string>
+    <string name="update_failure">Cập nhật thất bại</string>
+    <string name="updating">Đang cập nhật . . .</string>
+    <string name="exit">Thoát</string>
+    <string name="upload_truyen">Đăng truyện</string>
+    <string name="read">Đọc</string>
+    <string name="delete">Xóa</string>
+    <string name="sent_a_rate">Gửi đánh giá</string>
+    <string name="sent_a_comment">Gửi bình luận</string>
+    <string name="loading">Đang tải . . .</string>
+    <string name="truyen_de_cu">Truyện đề cử</string>
+    <string name="truyen_moi_nhat">Truyện mới nhất</string>
+    <string name="truyen_cung_tac_gia">Truyện cùng tác giả</string>
+    <string name="lich_su_doc_truyen">Lịch sử đọc truyện</string>
+    <string name="truyen_cat_giu">Truyện cất giữ</string>
+    <string name="truyen_top_rate">Truyện top rate</string>
+    <string name="truyen_top_view">Truyện top view</string>
+    <string name="content">Nội dung</string>
+</resources>

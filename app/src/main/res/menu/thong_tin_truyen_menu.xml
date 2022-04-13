@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/gioiThieuTruyen"
+        android:icon="@drawable/ic_intro_book_24"
+        android:title="GIỚI THIỆU" />
+
+    <item
+        android:id="@+id/binhLuanVaDanhGia"
+        android:icon="@drawable/ic_baseline_comment_bank_24"
+        android:title="BÌNH LUẬN VÀ ĐÁNH GIÁ" />
+
+    <item
+        android:id="@+id/danhSachChuong_fragment"
+        android:icon="@drawable/ic_baseline_menu_book_24"
+        android:title="DANH SÁCH CHƯƠNG" />
+</menu>
