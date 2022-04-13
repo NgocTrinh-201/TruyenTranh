@@ -33,6 +33,6 @@ public class Constans {
     public static final String TRUYEN_CAT_GIU = "Truyện cất giữ";
     public static final String TRUYEN_TOP_RATE = "Truyện top rate";
     public static final String TRUYEN_TOP_VIEW = "Truyện top view";
-    public static final FirebaseDatabase DATABASE = FirebaseDatabase.getInstance("https://doc-truyen-chu-default-rtdb.asia-southeast1.firebasedatabase.app/");
-    public static final FirebaseStorage STORAGE = FirebaseStorage.getInstance("gs://doc-truyen-chu.appspot.com/");
+    public static final FirebaseDatabase DATABASE = FirebaseDatabase.getInstance("");
+    public static final FirebaseStorage STORAGE = FirebaseStorage.getInstance("");
 }
