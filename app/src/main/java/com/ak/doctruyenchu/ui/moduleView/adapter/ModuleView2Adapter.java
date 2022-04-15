@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.ak.doctruyenchu.R;
 import com.ak.doctruyenchu.models.TRUYEN;
+import com.ak.doctruyenchu.ui.INTERFACE.HolderOnClick;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

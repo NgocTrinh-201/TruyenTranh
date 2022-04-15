@@ -126,17 +126,21 @@ public class ThongTinTruyen extends AppCompatActivity {
         if (Constans.AUTH.getCurrentUser()!=null){
             linearLayout.setVisibility(View.VISIBLE);
 
-            Constans.DATABASE.getReference(Constans.DE_CU).child(Constans.AUTH.getCurrentUser().getUid()).child("ten_truyen")
+            Constans.DATABASE.getReference(Constans.DE_CU).child(Constans.AUTH.getCurrentUser().getUid()).child(tentruyen).child("ten_truyen")
                     .get()
                     .addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
                         @Override
                         public void onSuccess(DataSnapshot dataSnapshot) {
                             String x = dataSnapshot.getValue(String.class);
                             if (x!=null){
-                                decu = true;
-                                Log.e("error",x);
-                                bt_de_cu_truyen.setText("Hủy đề cử");
-                                bt_de_cu_truyen.setBackground(getDrawable(R.color.gray_600));
+                                if (x.equals(tentruyen)){
+                                    decu = true;
+                                    Log.e("error",x);
+                                    bt_de_cu_truyen.setText("Hủy đề cử");
+                                    bt_de_cu_truyen.setBackground(getDrawable(R.color.gray_600));
+                                }else {
+                                    decu = false;
+                                }
                             }
                             else {
                                 decu = false;
@@ -238,13 +242,13 @@ public class ThongTinTruyen extends AppCompatActivity {
                                 Comco.capNhatDeCu(tentruyen,false);
                                 bt_de_cu_truyen.setText("Đề cử");
                                 bt_de_cu_truyen.setBackground(getDrawable(R.color.teal_200));
-                                Constans.DATABASE.getReference(Constans.DE_CU).child(Constans.AUTH.getCurrentUser().getUid()).child("ten_truyen").removeValue();
+                                Constans.DATABASE.getReference(Constans.DE_CU).child(Constans.AUTH.getCurrentUser().getUid()).child(tentruyen).child("ten_truyen").removeValue();
                             }else {
                                 decu = true;
                                 Comco.capNhatDeCu(tentruyen,true    );
                                 bt_de_cu_truyen.setText("Hủy đề cử");
                                 bt_de_cu_truyen.setBackground(getDrawable(R.color.gray_600));
-                                Constans.DATABASE.getReference(Constans.DE_CU).child(Constans.AUTH.getCurrentUser().getUid()).child("ten_truyen").setValue(tentruyen);
+                                Constans.DATABASE.getReference(Constans.DE_CU).child(Constans.AUTH.getCurrentUser().getUid()).child(tentruyen).child("ten_truyen").setValue(tentruyen);
                             }
                         }
                     });

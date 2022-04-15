@@ -20,6 +20,7 @@ import com.ak.doctruyenchu.R;
 import com.ak.doctruyenchu.models.BinhLuan;
 import com.ak.doctruyenchu.models.DanhGia;
 import com.ak.doctruyenchu.models.USER;
+import com.ak.doctruyenchu.ui.ThongTinTruyen.adapter.BinhLuanAdapter;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 

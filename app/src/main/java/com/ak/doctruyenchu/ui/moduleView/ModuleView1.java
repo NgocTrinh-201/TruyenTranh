@@ -21,7 +21,7 @@ import com.ak.doctruyenchu.R;
 import com.ak.doctruyenchu.models.TRUYEN;
 import com.ak.doctruyenchu.ui.DanhSachTruyen.DanhSachTruyen;
 import com.ak.doctruyenchu.ui.ThongTinTruyen.ThongTinTruyen;
-import com.ak.doctruyenchu.ui.moduleView.adapter.HolderOnClick;
+import com.ak.doctruyenchu.ui.INTERFACE.HolderOnClick;
 import com.ak.doctruyenchu.ui.moduleView.adapter.ModuleView1Adapter;
 import com.squareup.picasso.Picasso;
 
@@ -56,16 +56,23 @@ public class ModuleView1 extends Fragment {
 
     public ModuleView1() {
         // Required empty public constructor
+        this.truyenArrayList = new ArrayList<>();
+        adapter = new ModuleView1Adapter(truyenArrayList);
 
     }
-    public void setModule(Module module, ArrayList<TRUYEN> truyenArrayList){
+
+    public void setArray(ArrayList<TRUYEN> truyenArrayList){
+        this.truyenArrayList.clear();
+        this.truyenArrayList.addAll(truyenArrayList);
+        if (this.truyenArrayList.size()!=0)
+            setView(this.truyenArrayList.get(0));
+        adapter.notifyDataSetChanged();
+    }
+
+    public void setModule(Module module){
         this.module=module;
-        this.truyenArrayList=truyenArrayList;
     }
 
-    public void setModule(ArrayList<TRUYEN> truyenArrayList){
-        this.truyenArrayList=truyenArrayList;
-    }
 
     /**
      * Use this factory method to create a new instance of
@@ -105,8 +112,7 @@ public class ModuleView1 extends Fragment {
     }
 
     private void run(ArrayList<TRUYEN> truyenArrayList){
-        setView(truyenArrayList.get(0));
-        adapter = new ModuleView1Adapter(truyenArrayList);
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -147,7 +153,7 @@ public class ModuleView1 extends Fragment {
         mo_ta.setText(truyen.getMo_ta());
         tv_so_luot_rate.setText("("+truyen.getSo_luot_rate()+" lượt)");
         ratingBar.setRating(truyen.getRate());
-        tv_title_module_view1.setText(module.moduleName);
+
     }
 
     private void unitUI(){
@@ -161,6 +167,9 @@ public class ModuleView1 extends Fragment {
         ten_truyen = view.findViewById(R.id.tv_ten_truyen_module_view1);
         constraintLayout = view.findViewById(R.id.title_module_view1);
         tv_title_module_view1 = view.findViewById(R.id.tv_title_module_view1);
+
+        if (module!=null)
+            tv_title_module_view1.setText(module.moduleName);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.ak.doctruyenchu.ui.ThongTinTruyen;
+package com.ak.doctruyenchu.ui.ThongTinTruyen.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -78,7 +78,7 @@ public class BinhLuanAdapter extends RecyclerView.Adapter {
 
             if (Constans.AUTH.getCurrentUser()!=null){
                 if ( binhLuan.getUid().equals(Constans.AUTH.getCurrentUser().getUid())){
-                    cardView.setCardBackgroundColor(-16524603);
+                    cardView.setCardBackgroundColor(2131034145);
                     content.setTextColor(-1);
                     name.setText("Bạn");
                 }

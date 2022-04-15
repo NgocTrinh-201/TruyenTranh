@@ -1,0 +1,1325 @@
+Index: app/src/main/java/com/ak/doctruyenchu/Constans/Constans.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.ak.doctruyenchu.Constans;\r\n\r\nimport com.google.firebase.auth.FirebaseAuth;\r\nimport com.google.firebase.database.FirebaseDatabase;\r\nimport com.google.firebase.storage.FirebaseStorage;\r\n\r\npublic class Constans {\r\n    public static final int LAY_TRUYEN_MOI_NHAT = 1;\r\n    public static final int LAY_TRUYEN_DE_CU = 2;\r\n    public static final int LAY_TOP10_TRUYEN_MOI_NHAT = 3;\r\n    public static final int LAY_TRUYEN_THEO_TEN_TAC_GIA =4;\r\n    public static final int VIEW_GIOI_THIEU_TRUYEN = 5;\r\n    public static final FirebaseAuth AUTH = FirebaseAuth.getInstance();\r\n    public static final int SELECT_IMAGE = 6;\r\n    public static final String AUTHOR = \"Author\";\r\n    public static final String READER = \"Reader\";\r\n    public static final String LICH_SU = \"LICH_SU\";\r\n    public static final String CHUONG = \"CHUONG\";\r\n    public static final String TRUYEN = \"TRUYEN\";\r\n    public static final String USER = \"USER\";\r\n    public static final String BINH_LUAN = \"BINH_LUAN\";\r\n    public static final String DANH_GIA = \"DANH_GIA\";\r\n    public static final String DE_CU = \"DE_CU\";\r\n    public static final String TU_TRUYEN = \"TU_TRUYEN\";\r\n    public static final String KEY = \"KEY\";\r\n    public static final String TEN_TRUYEN_KEY = \"TEN_TRUYEN_KEY\";\r\n    public static final String URL_ANH_NEN_TRUYEN_KEY = \"URL_ANH_NEN_TRUYEN_KEY\";\r\n    public static final String TAC_GIA_KEY = \"TAC_GIA_KEY\";\r\n    public static final String TRUYEN_DE_CU = \"Truyện đề cử\";\r\n    public static final String TRUYEN_MOI_NHAT = \"Truyện mới nhất\";\r\n    public static final String TRUYEN_CUNG_TAC_GIA = \"Truyện cùng tác giả\";\r\n    public static final String LICH_SU_DOC_TRUYEN = \"Lịch sử đọc truyện\";\r\n    public static final String TRUYEN_CAT_GIU = \"Truyện cất giữ\";\r\n    public static final String TRUYEN_TOP_RATE = \"Truyện top rate\";\r\n    public static final String TRUYEN_TOP_VIEW = \"Truyện top view\";\r\n    public static final FirebaseDatabase DATABASE = FirebaseDatabase.getInstance(\"https://doc-truyen-chu-default-rtdb.asia-southeast1.firebasedatabase.app/\");\r\n    public static final FirebaseStorage STORAGE = FirebaseStorage.getInstance(\"gs://doc-truyen-chu.appspot.com/\");\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/ak/doctruyenchu/Constans/Constans.java b/app/src/main/java/com/ak/doctruyenchu/Constans/Constans.java
+--- a/app/src/main/java/com/ak/doctruyenchu/Constans/Constans.java	(revision 4e732abeb089e9391817582535edbdb70a4f36bd)
++++ b/app/src/main/java/com/ak/doctruyenchu/Constans/Constans.java	(date 1649861975276)
+@@ -23,8 +23,11 @@
+     public static final String DE_CU = "DE_CU";
+     public static final String TU_TRUYEN = "TU_TRUYEN";
+     public static final String KEY = "KEY";
++    public static final String PICTURE = "PICTURE";
++    public static final String ANH_BIA_TRUYEN = "ANH_BIA_TRUYEN";
+     public static final String TEN_TRUYEN_KEY = "TEN_TRUYEN_KEY";
+     public static final String URL_ANH_NEN_TRUYEN_KEY = "URL_ANH_NEN_TRUYEN_KEY";
++    public static final String QUAN_LY_DANG_TRUYEN = "QUAN_LY_DANG_TRUYEN";
+     public static final String TAC_GIA_KEY = "TAC_GIA_KEY";
+     public static final String TRUYEN_DE_CU = "Truyện đề cử";
+     public static final String TRUYEN_MOI_NHAT = "Truyện mới nhất";
+Index: app/src/main/res/layout/activity_dang_truyen.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".ui.DangTruyen.DangTruyen\"\r\n    android:orientation=\"vertical\">\r\n    <com.google.android.material.appbar.AppBarLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\">\r\n        <androidx.appcompat.widget.Toolbar\r\n            android:gravity=\"start\"\r\n            android:background=\"@color/white\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"?actionBarSize\">\r\n            <androidx.constraintlayout.widget.ConstraintLayout\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\">\r\n\r\n                <ImageButton\r\n                    android:id=\"@+id/bt_back\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_margin=\"10sp\"\r\n                    android:background=\"@drawable/ic_baseline_arrow_back_ios_24\"\r\n                    android:minWidth=\"24sp\"\r\n                    android:minHeight=\"24sp\"\r\n                    app:layout_constraintBottom_toBottomOf=\"parent\"\r\n                    app:layout_constraintStart_toStartOf=\"parent\"\r\n                    app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n                <TextView\r\n                    android:id=\"@+id/textView\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"match_parent\"\r\n                    android:gravity=\"center\"\r\n                    android:text=\"Thêm truyện\"\r\n                    android:textSize=\"18sp\"\r\n                    android:textStyle=\"bold\"\r\n                    app:layout_constraintBottom_toBottomOf=\"parent\"\r\n                    app:layout_constraintEnd_toStartOf=\"@+id/bt_them\"\r\n                    app:layout_constraintStart_toEndOf=\"@+id/bt_back\"\r\n                    app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n                <androidx.cardview.widget.CardView\r\n                    android:layout_marginRight=\"20sp\"\r\n                    android:layout_marginVertical=\"10sp\"\r\n                    android:id=\"@+id/bt_them\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    app:cardBackgroundColor=\"@color/teal_200\"\r\n                    app:cardCornerRadius=\"20sp\"\r\n                    app:layout_constraintBottom_toBottomOf=\"parent\"\r\n                    app:layout_constraintEnd_toEndOf=\"parent\"\r\n                    app:layout_constraintTop_toTopOf=\"parent\">\r\n                    <TextView\r\n                        android:textColor=\"@color/white\"\r\n                        android:padding=\"5sp\"\r\n                        android:textSize=\"13sp\"\r\n                        android:layout_width=\"wrap_content\"\r\n                        android:layout_height=\"wrap_content\"\r\n                        android:gravity=\"center\"\r\n                        android:text=\" Thêm \" />\r\n                </androidx.cardview.widget.CardView>\r\n            </androidx.constraintlayout.widget.ConstraintLayout>\r\n        </androidx.appcompat.widget.Toolbar>\r\n    </com.google.android.material.appbar.AppBarLayout>\r\n\r\n    <LinearLayout\r\n        android:padding=\"10sp\"\r\n        android:gravity=\"center\"\r\n        android:orientation=\"vertical\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\">\r\n        <androidx.cardview.widget.CardView\r\n            android:layout_margin=\"10sp\"\r\n            app:cardCornerRadius=\"20sp\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\">\r\n            <ImageView\r\n                android:id=\"@+id/img_bia_truyen\"\r\n                android:scaleType=\"centerCrop\"\r\n                android:src=\"@drawable/book_background_default\"\r\n                android:layout_width=\"120sp\"\r\n                android:layout_height=\"180sp\"/>\r\n        </androidx.cardview.widget.CardView>\r\n        <TextView\r\n            android:drawableLeft=\"@drawable/ic_baseline_photo_24\"\r\n            android:text=\"Chọn ảnh bìa cho truyện \"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"/>\r\n    </LinearLayout>\r\n    <com.google.android.material.textfield.TextInputLayout\r\n        android:layout_margin=\"10sp\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\">\r\n        <com.google.android.material.textfield.TextInputEditText\r\n            android:background=\"@color/white\"\r\n            android:gravity=\"center_vertical\"\r\n            android:hint=\"Tên truyện\"\r\n            android:id=\"@+id/them_truyen_ten_truyen\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"50sp\"/>\r\n    </com.google.android.material.textfield.TextInputLayout>\r\n\r\n        <com.google.android.material.textfield.TextInputLayout\r\n            android:layout_margin=\"10sp\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\">\r\n            <com.google.android.material.textfield.TextInputEditText\r\n                android:hint=\"Mô tả\"\r\n                android:id=\"@+id/them_truyen_mo_ta\"\r\n                android:background=\"@color/white\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"wrap_content\"/>\r\n        </com.google.android.material.textfield.TextInputLayout>\r\n</LinearLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_dang_truyen.xml b/app/src/main/res/layout/activity_dang_truyen.xml
+--- a/app/src/main/res/layout/activity_dang_truyen.xml	(revision 4e732abeb089e9391817582535edbdb70a4f36bd)
++++ b/app/src/main/res/layout/activity_dang_truyen.xml	(date 1649861975249)
+@@ -66,53 +66,83 @@
+             </androidx.constraintlayout.widget.ConstraintLayout>
+         </androidx.appcompat.widget.Toolbar>
+     </com.google.android.material.appbar.AppBarLayout>
+-
+-    <LinearLayout
+-        android:padding="10sp"
+-        android:gravity="center"
+-        android:orientation="vertical"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content">
+-        <androidx.cardview.widget.CardView
+-            android:layout_margin="10sp"
+-            app:cardCornerRadius="20sp"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content">
+-            <ImageView
+-                android:id="@+id/img_bia_truyen"
+-                android:scaleType="centerCrop"
+-                android:src="@drawable/book_background_default"
+-                android:layout_width="120sp"
+-                android:layout_height="180sp"/>
+-        </androidx.cardview.widget.CardView>
+-        <TextView
+-            android:drawableLeft="@drawable/ic_baseline_photo_24"
+-            android:text="Chọn ảnh bìa cho truyện "
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"/>
+-    </LinearLayout>
+-    <com.google.android.material.textfield.TextInputLayout
+-        android:layout_margin="10sp"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content">
+-        <com.google.android.material.textfield.TextInputEditText
+-            android:background="@color/white"
+-            android:gravity="center_vertical"
+-            android:hint="Tên truyện"
+-            android:id="@+id/them_truyen_ten_truyen"
+-            android:layout_width="match_parent"
+-            android:layout_height="50sp"/>
+-    </com.google.android.material.textfield.TextInputLayout>
+-
+-        <com.google.android.material.textfield.TextInputLayout
+-            android:layout_margin="10sp"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content">
+-            <com.google.android.material.textfield.TextInputEditText
+-                android:hint="Mô tả"
+-                android:id="@+id/them_truyen_mo_ta"
+-                android:background="@color/white"
+-                android:layout_width="match_parent"
+-                android:layout_height="wrap_content"/>
+-        </com.google.android.material.textfield.TextInputLayout>
++    <FrameLayout
++        android:layout_width="match_parent"
++        android:layout_height="match_parent">
++        <ScrollView
++            android:id="@+id/content_view"
++            android:layout_marginTop="?actionBarSize"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content">
++            <LinearLayout
++                android:layout_width="match_parent"
++                android:layout_height="match_parent"
++                android:orientation="vertical">
++                <LinearLayout
++                    android:padding="10sp"
++                    android:gravity="center"
++                    android:orientation="vertical"
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content">
++                    <androidx.cardview.widget.CardView
++                        android:layout_margin="10sp"
++                        app:cardCornerRadius="20sp"
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content">
++                        <ImageView
++                            android:id="@+id/img_bia_truyen"
++                            android:scaleType="centerCrop"
++                            android:src="@drawable/book_background_default"
++                            android:layout_width="120sp"
++                            android:layout_height="180sp"/>
++                    </androidx.cardview.widget.CardView>
++                    <TextView
++                        android:drawableLeft="@drawable/ic_baseline_photo_24"
++                        android:text="Chọn ảnh bìa cho truyện "
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"/>
++                </LinearLayout>
++                <com.google.android.material.textfield.TextInputLayout
++                    android:layout_margin="10sp"
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content">
++                    <com.google.android.material.textfield.TextInputEditText
++                        android:background="@color/white"
++                        android:gravity="center_vertical"
++                        android:hint="Tên truyện"
++                        android:id="@+id/them_truyen_ten_truyen"
++                        android:layout_width="match_parent"
++                        android:layout_height="50sp"/>
++                </com.google.android.material.textfield.TextInputLayout>
++                <com.google.android.material.textfield.TextInputLayout
++                    android:layout_margin="10sp"
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content">
++                    <com.google.android.material.textfield.TextInputEditText
++                        android:hint="Mô tả"
++                        android:id="@+id/them_truyen_mo_ta"
++                        android:background="@color/white"
++                        android:layout_width="match_parent"
++                        android:layout_height="wrap_content"/>
++                </com.google.android.material.textfield.TextInputLayout>
++            </LinearLayout>
++        </ScrollView>
++        <LinearLayout
++            android:id="@+id/layout_prog"
++            android:visibility="gone"
++            android:gravity="center_horizontal"
++            android:orientation="vertical"
++            android:layout_width="match_parent"
++            android:layout_height="match_parent">
++            <ProgressBar
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"/>
++            <TextView
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:text="Vui lòng đợi"
++                android:textSize="12sp"
++                android:gravity="center"/>
++        </LinearLayout>
++    </FrameLayout>
+ </LinearLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/ak/doctruyenchu/ui/DangTruyen/DangTruyen.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.ak.doctruyenchu.ui.DangTruyen;\r\n\r\nimport androidx.annotation.Nullable;\r\nimport androidx.appcompat.app.AlertDialog;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.cardview.widget.CardView;\r\n\r\nimport android.content.Context;\r\nimport android.content.DialogInterface;\r\nimport android.content.Intent;\r\nimport android.net.Uri;\r\nimport android.os.Bundle;\r\nimport android.os.FileUtils;\r\nimport android.util.Log;\r\nimport android.view.View;\r\nimport android.widget.ImageButton;\r\nimport android.widget.ImageView;\r\nimport android.widget.Toast;\r\n\r\nimport com.ak.doctruyenchu.Constans.Constans;\r\nimport com.ak.doctruyenchu.R;\r\nimport com.ak.doctruyenchu.databinding.ActivityDangTruyenBinding;\r\nimport com.ak.doctruyenchu.models.TRUYEN;\r\nimport com.google.android.material.textfield.TextInputEditText;\r\nimport com.squareup.picasso.Picasso;\r\n\r\n\r\n\r\npublic class DangTruyen extends AppCompatActivity {\r\n\r\n    private ImageView anh_bia;\r\n    private ImageButton bt_back;\r\n    private CardView bt_them;\r\n    private TextInputEditText ten_truyen, mo_ta;\r\n    private Uri uri;\r\n\r\n    private ActivityDangTruyenBinding binding;\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        binding = ActivityDangTruyenBinding.inflate(getLayoutInflater());\r\n        setContentView(binding.getRoot());\r\n        anh_bia=binding.imgBiaTruyen;\r\n        bt_back=binding.btBack;\r\n        bt_them=binding.btThem;\r\n        ten_truyen=binding.themTruyenTenTruyen;\r\n        mo_ta=binding.themTruyenMoTa;\r\n        uri= Uri.parse(\"android.resource://\" + getPackageName() + \"/\" + R.drawable.book_background_default);\r\n\r\n        event();\r\n\r\n    }\r\n\r\n    private void event() {\r\n        bt_back.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n               onBackPressed();\r\n            }\r\n        });\r\n        anh_bia.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent();\r\n                intent.setType(\"image/*\");\r\n                intent.setAction(Intent.ACTION_GET_CONTENT);\r\n                startActivityIfNeeded(Intent.createChooser(intent,getString(R.string.select_image)), Constans.SELECT_IMAGE);\r\n            }\r\n        });\r\n        bt_them.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                String tenTruyen = ten_truyen.getText().toString().trim();\r\n                String moTa = mo_ta.getText().toString().trim();\r\n                if (tenTruyen.isEmpty()||moTa.isEmpty()){\r\n                    Toast.makeText(DangTruyen.this, \"Chua du thong tin\", Toast.LENGTH_SHORT).show();\r\n                }else {\r\n                    TRUYEN truyen = new TRUYEN();\r\n                    truyen.themTruyen(tenTruyen,moTa,\"none\");\r\n                    Constans.DATABASE.getReference(\"NHAP\").child(\"TRUYEN_NHAP\").child(Constans.AUTH.getCurrentUser().getUid())\r\n                            .child(tenTruyen).setValue(truyen);\r\n                }\r\n            }\r\n        });\r\n    }\r\n\r\n    @Override\r\n    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {\r\n        super.onActivityResult(requestCode, resultCode, data);\r\n        if(requestCode == Constans.SELECT_IMAGE && resultCode == RESULT_OK && data!=null){\r\n            uri = data.getData();\r\n            Picasso.get().load(uri)\r\n                    .into(anh_bia);\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public void onBackPressed() {\r\n        Log.e(\"error\",\"pressed\");\r\n        if (!ten_truyen.getText().toString().isEmpty() || !mo_ta.getText().toString().isEmpty()){\r\n            AlertDialog.Builder builder = new AlertDialog.Builder(DangTruyen.this);\r\n            builder.setTitle(\"Thông báo !\");\r\n            builder.setMessage(\"Bạn có chắc muốn thoát ?\");\r\n            builder.setNeutralButton(\"Hủy\", new DialogInterface.OnClickListener() {\r\n                @Override\r\n                public void onClick(DialogInterface dialog, int which) {\r\n                    dialog.cancel();\r\n                }\r\n            });\r\n            builder.setPositiveButton(\"Xác nhận\", new DialogInterface.OnClickListener() {\r\n                @Override\r\n                public void onClick(DialogInterface dialog, int which) {\r\n                    finish();\r\n                }\r\n            });\r\n            AlertDialog alertDialog = builder.create();\r\n            alertDialog.show();\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/ak/doctruyenchu/ui/DangTruyen/DangTruyen.java b/app/src/main/java/com/ak/doctruyenchu/ui/DangTruyen/DangTruyen.java
+--- a/app/src/main/java/com/ak/doctruyenchu/ui/DangTruyen/DangTruyen.java	(revision 4e732abeb089e9391817582535edbdb70a4f36bd)
++++ b/app/src/main/java/com/ak/doctruyenchu/ui/DangTruyen/DangTruyen.java	(date 1649862672612)
+@@ -15,13 +15,17 @@
+ import android.view.View;
+ import android.widget.ImageButton;
+ import android.widget.ImageView;
++import android.widget.LinearLayout;
++import android.widget.ScrollView;
+ import android.widget.Toast;
+ 
+ import com.ak.doctruyenchu.Constans.Constans;
+ import com.ak.doctruyenchu.R;
+ import com.ak.doctruyenchu.databinding.ActivityDangTruyenBinding;
+ import com.ak.doctruyenchu.models.TRUYEN;
++import com.google.android.gms.tasks.OnSuccessListener;
+ import com.google.android.material.textfield.TextInputEditText;
++import com.google.firebase.storage.UploadTask;
+ import com.squareup.picasso.Picasso;
+ 
+ 
+@@ -33,6 +37,7 @@
+     private CardView bt_them;
+     private TextInputEditText ten_truyen, mo_ta;
+     private Uri uri;
++    private LinearLayout prog;
+ 
+     private ActivityDangTruyenBinding binding;
+     @Override
+@@ -43,6 +48,7 @@
+         anh_bia=binding.imgBiaTruyen;
+         bt_back=binding.btBack;
+         bt_them=binding.btThem;
++        prog = binding.layoutProg;
+         ten_truyen=binding.themTruyenTenTruyen;
+         mo_ta=binding.themTruyenMoTa;
+         uri= Uri.parse("android.resource://" + getPackageName() + "/" + R.drawable.book_background_default);
+@@ -70,18 +76,51 @@
+         bt_them.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
++                clickable(false);
++                prog.setVisibility(View.VISIBLE);
+                 String tenTruyen = ten_truyen.getText().toString().trim();
+                 String moTa = mo_ta.getText().toString().trim();
+                 if (tenTruyen.isEmpty()||moTa.isEmpty()){
+                     Toast.makeText(DangTruyen.this, "Chua du thong tin", Toast.LENGTH_SHORT).show();
+                 }else {
+                     TRUYEN truyen = new TRUYEN();
+-                    truyen.themTruyen(tenTruyen,moTa,"none");
+-                    Constans.DATABASE.getReference("NHAP").child("TRUYEN_NHAP").child(Constans.AUTH.getCurrentUser().getUid())
+-                            .child(tenTruyen).setValue(truyen);
++
++                    Constans.STORAGE.getReference(Constans.PICTURE).child(Constans.ANH_BIA_TRUYEN).child(Constans.AUTH.getCurrentUser().getUid())
++                            .child(tenTruyen)
++                            .putFile(uri)
++                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
++                                @Override
++                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
++                                    Constans.STORAGE.getReference(Constans.PICTURE).child(Constans.ANH_BIA_TRUYEN).child(Constans.AUTH.getCurrentUser().getUid())
++                                            .child(tenTruyen)
++                                            .getDownloadUrl()
++                                            .addOnSuccessListener(new OnSuccessListener<Uri>() {
++                                                @Override
++                                                public void onSuccess(Uri uri) {
++                                                    truyen.themTruyen(tenTruyen,moTa,uri.toString());
++                                                    Constans.DATABASE.getReference("NHAP").child("TRUYEN_NHAP").child(Constans.AUTH.getCurrentUser().getUid())
++                                                            .child(tenTruyen).setValue(truyen)
++                                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
++                                                                @Override
++                                                                public void onSuccess(Void unused) {
++                                                                    finish();
++                                                                }
++                                                            });
++                                                }
++                                            });
++                                }
++                            });
++
++
+                 }
+             }
+         });
++    }
++
++    private void clickable(boolean b){
++        anh_bia.setClickable(b);
++        ten_truyen.setEnabled(b);
++        mo_ta.setEnabled(b);
+     }
+ 
+     @Override
+@@ -96,7 +135,6 @@
+ 
+     @Override
+     public void onBackPressed() {
+-        Log.e("error","pressed");
+         if (!ten_truyen.getText().toString().isEmpty() || !mo_ta.getText().toString().isEmpty()){
+             AlertDialog.Builder builder = new AlertDialog.Builder(DangTruyen.this);
+             builder.setTitle("Thông báo !");
+@@ -115,6 +153,6 @@
+             });
+             AlertDialog alertDialog = builder.create();
+             alertDialog.show();
+-        }
++        }else super.onBackPressed();
+     }
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/ak/doctruyenchu/ui/DangTruyen/QuanLyDangTruyen/QuanLyDangTruyen.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.ak.doctruyenchu.ui.DangTruyen.QuanLyDangTruyen;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.os.Bundle;\r\n\r\nimport com.ak.doctruyenchu.R;\r\nimport com.ak.doctruyenchu.databinding.ActivityQuanLyDangTruyenBinding;\r\n\r\npublic class QuanLyDangTruyen extends AppCompatActivity {\r\n\r\n\r\n    private ActivityQuanLyDangTruyenBinding binding;\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        binding = ActivityQuanLyDangTruyenBinding.inflate(getLayoutInflater());\r\n        setContentView(binding.getRoot());\r\n\r\n\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/ak/doctruyenchu/ui/DangTruyen/QuanLyDangTruyen/QuanLyDangTruyen.java b/app/src/main/java/com/ak/doctruyenchu/ui/DangTruyen/QuanLyDangTruyen/QuanLyDangTruyen.java
+--- a/app/src/main/java/com/ak/doctruyenchu/ui/DangTruyen/QuanLyDangTruyen/QuanLyDangTruyen.java	(revision 4e732abeb089e9391817582535edbdb70a4f36bd)
++++ b/app/src/main/java/com/ak/doctruyenchu/ui/DangTruyen/QuanLyDangTruyen/QuanLyDangTruyen.java	(date 1649863212597)
+@@ -1,15 +1,39 @@
+ package com.ak.doctruyenchu.ui.DangTruyen.QuanLyDangTruyen;
+ 
++import androidx.annotation.NonNull;
+ import androidx.appcompat.app.AppCompatActivity;
++import androidx.recyclerview.widget.LinearLayoutManager;
++import androidx.recyclerview.widget.RecyclerView;
+ 
++import android.content.Intent;
+ import android.os.Bundle;
++import android.os.ConditionVariable;
++import android.util.Log;
++import android.view.View;
+ 
++import com.ak.doctruyenchu.Constans.Constans;
+ import com.ak.doctruyenchu.R;
+ import com.ak.doctruyenchu.databinding.ActivityQuanLyDangTruyenBinding;
++import com.ak.doctruyenchu.models.TRUYEN;
++import com.ak.doctruyenchu.ui.CaNhan.DaDangNhap;
++import com.ak.doctruyenchu.ui.DangTruyen.DangTruyen;
++import com.ak.doctruyenchu.ui.DangTruyen.QuanLyDangTruyen.adapter.QLDTadapter;
++import com.google.android.gms.tasks.OnCompleteListener;
++import com.google.android.gms.tasks.OnFailureListener;
++import com.google.android.gms.tasks.OnSuccessListener;
++import com.google.android.gms.tasks.Task;
++import com.google.firebase.database.DataSnapshot;
++
++import java.util.ArrayList;
++import java.util.concurrent.Executor;
+ 
+ public class QuanLyDangTruyen extends AppCompatActivity {
+ 
+ 
++    private QLDTadapter qldTadapter;
++    private RecyclerView recyclerView;
++    private ArrayList<TRUYEN> truyenPublic;
++    private ArrayList<TRUYEN> truyenDraw;
+     private ActivityQuanLyDangTruyenBinding binding;
+ 
+     @Override
+@@ -17,7 +41,42 @@
+         super.onCreate(savedInstanceState);
+         binding = ActivityQuanLyDangTruyenBinding.inflate(getLayoutInflater());
+         setContentView(binding.getRoot());
++        recyclerView = binding.rcvQlt;
++        recyclerView.setLayoutManager(new LinearLayoutManager(this));
++        binding.fabQlt.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                startActivity(new Intent(QuanLyDangTruyen.this, DangTruyen.class));
++            }
++        });
++
+ 
+ 
+     }
++
++    @Override
++    protected void onPostResume() {
++        super.onPostResume();
++        run();
++    }
++
++    private void run() {
++        truyenDraw = new ArrayList<>();
++        Constans.DATABASE.getReference("NHAP").child("TRUYEN_NHAP").child(Constans.AUTH.getCurrentUser().getUid())
++                .get()
++                .addOnCompleteListener( new OnCompleteListener<DataSnapshot>() {
++                    @Override
++                    public void onComplete(@NonNull Task<DataSnapshot> task) {
++                        if (task.isSuccessful()){
++                            DataSnapshot data = task.getResult();
++                            for (DataSnapshot x : data.getChildren()){
++                                truyenDraw.add(x.getValue(TRUYEN.class));
++                            }
++                        }
++                        qldTadapter = new QLDTadapter(truyenDraw);
++                        recyclerView.setAdapter(qldTadapter);
++                        qldTadapter.notifyDataSetChanged();
++                    }
++                });
++    }
+ }
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_quan_ly_dang_truyen.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".ui.DangTruyen.DangTruyen\"\r\n    android:orientation=\"vertical\">\r\n    <com.google.android.material.appbar.AppBarLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\">\r\n        <androidx.appcompat.widget.Toolbar\r\n            android:gravity=\"start\"\r\n            android:background=\"@color/white\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"?actionBarSize\">\r\n            <androidx.constraintlayout.widget.ConstraintLayout\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\">\r\n\r\n                <ImageButton\r\n                    android:id=\"@+id/bt_back\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\"\r\n                    android:layout_margin=\"10sp\"\r\n                    android:background=\"@drawable/ic_baseline_arrow_back_ios_24\"\r\n                    android:minWidth=\"24sp\"\r\n                    android:minHeight=\"24sp\"\r\n                    app:layout_constraintBottom_toBottomOf=\"parent\"\r\n                    app:layout_constraintStart_toStartOf=\"parent\"\r\n                    app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n                <TextView\r\n                    android:id=\"@+id/textView\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"match_parent\"\r\n                    android:gravity=\"center\"\r\n                    android:text=\"Thêm truyện\"\r\n                    android:textSize=\"18sp\"\r\n                    android:textStyle=\"bold\"\r\n                    app:layout_constraintBottom_toBottomOf=\"parent\"\r\n                    app:layout_constraintEnd_toEndOf=\"parent\"\r\n                    app:layout_constraintStart_toStartOf=\"@+id/bt_back\"\r\n                    app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n            </androidx.constraintlayout.widget.ConstraintLayout>\r\n        </androidx.appcompat.widget.Toolbar>\r\n    </com.google.android.material.appbar.AppBarLayout>\r\n\r\n</LinearLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/activity_quan_ly_dang_truyen.xml b/app/src/main/res/layout/activity_quan_ly_dang_truyen.xml
+--- a/app/src/main/res/layout/activity_quan_ly_dang_truyen.xml	(revision 4e732abeb089e9391817582535edbdb70a4f36bd)
++++ b/app/src/main/res/layout/activity_quan_ly_dang_truyen.xml	(date 1649859153493)
+@@ -17,7 +17,6 @@
+             <androidx.constraintlayout.widget.ConstraintLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent">
+-
+                 <ImageButton
+                     android:id="@+id/bt_back"
+                     android:layout_width="wrap_content"
+@@ -29,13 +28,12 @@
+                     app:layout_constraintBottom_toBottomOf="parent"
+                     app:layout_constraintStart_toStartOf="parent"
+                     app:layout_constraintTop_toTopOf="parent" />
+-
+                 <TextView
+                     android:id="@+id/textView"
+                     android:layout_width="wrap_content"
+                     android:layout_height="match_parent"
+                     android:gravity="center"
+-                    android:text="Thêm truyện"
++                    android:text="Các truyện đã đăng"
+                     android:textSize="18sp"
+                     android:textStyle="bold"
+                     app:layout_constraintBottom_toBottomOf="parent"
+@@ -46,5 +44,24 @@
+             </androidx.constraintlayout.widget.ConstraintLayout>
+         </androidx.appcompat.widget.Toolbar>
+     </com.google.android.material.appbar.AppBarLayout>
++    <androidx.constraintlayout.widget.ConstraintLayout
++        android:layout_width="match_parent"
++        android:layout_height="match_parent">
++        <androidx.recyclerview.widget.RecyclerView
++            android:id="@+id/rcv_qlt"
++            android:layout_width="match_parent"
++            android:layout_height="match_parent"/>
++
++        <com.google.android.material.floatingactionbutton.FloatingActionButton
++            android:id="@+id/fab_qlt"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_margin="20sp"
++            android:backgroundTint="@color/black"
++            app:layout_constraintBottom_toBottomOf="parent"
++            android:src="@drawable/ic_baseline_edit_note_24"
++            app:layout_constraintEnd_toEndOf="parent"
++            app:tint="@color/white" />
++    </androidx.constraintlayout.widget.ConstraintLayout>
+ 
+ </LinearLayout>
+\ No newline at end of file
+Index: .idea/deploymentTargetDropDown.xml
+===================================================================
+diff --git a/.idea/deploymentTargetDropDown.xml b/.idea/deploymentTargetDropDown.xml
+deleted file mode 100644
+--- a/.idea/deploymentTargetDropDown.xml	(revision 4e732abeb089e9391817582535edbdb70a4f36bd)
++++ /dev/null	(revision 4e732abeb089e9391817582535edbdb70a4f36bd)
+@@ -1,17 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="deploymentTargetDropDown">
+-    <runningDeviceTargetSelectedWithDropDown>
+-      <Target>
+-        <type value="RUNNING_DEVICE_TARGET" />
+-        <deviceKey>
+-          <Key>
+-            <type value="SERIAL_NUMBER" />
+-            <value value="6648c9a6" />
+-          </Key>
+-        </deviceKey>
+-      </Target>
+-    </runningDeviceTargetSelectedWithDropDown>
+-    <timeTargetWasSelectedWithDropDown value="2022-04-13T08:56:10.340021300Z" />
+-  </component>
+-</project>
+\ No newline at end of file
+Index: app/src/main/res/layout/item_module_view2_vertical.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"190sp\"\r\n    android:padding=\"15sp\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    android:orientation=\"vertical\">\r\n    <androidx.constraintlayout.widget.ConstraintLayout\r\n        android:padding=\"5sp\"\r\n        android:orientation=\"horizontal\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"wrap_content\">\r\n\r\n        <androidx.cardview.widget.CardView\r\n            android:id=\"@+id/cardView\"\r\n            android:layout_width=\"100sp\"\r\n            android:layout_height=\"150sp\"\r\n            app:cardCornerRadius=\"20sp\"\r\n            app:layout_constraintBottom_toBottomOf=\"parent\"\r\n            app:layout_constraintStart_toStartOf=\"parent\"\r\n            app:layout_constraintTop_toTopOf=\"parent\"\r\n            tools:ignore=\"MissingConstraints\">\r\n            <ImageView\r\n                android:id=\"@+id/item_image_mdv2\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\" />\r\n        </androidx.cardview.widget.CardView>\r\n\r\n        <LinearLayout\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"match_parent\"\r\n            android:layout_marginStart=\"20sp\"\r\n            android:orientation=\"vertical\"\r\n            app:layout_constraintBottom_toBottomOf=\"parent\"\r\n            app:layout_constraintStart_toEndOf=\"@+id/cardView\"\r\n            app:layout_constraintTop_toTopOf=\"parent\">\r\n            <TextView\r\n                android:id=\"@+id/item_tv_mdv2\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_gravity=\"start\"\r\n                android:ellipsize=\"end\"\r\n                android:maxLines=\"2\"\r\n                android:text=\"@string/loading\"\r\n                android:textSize=\"20sp\"\r\n                android:textStyle=\"bold\"\r\n                tools:ignore=\"MissingConstraints\" />\r\n\r\n            <TextView\r\n                android:id=\"@+id/item_tv_tac_gia_mdv2\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_gravity=\"start\"\r\n                android:ellipsize=\"end\"\r\n                android:maxLines=\"2\"\r\n                android:text=\"@string/loading\"\r\n                tools:ignore=\"MissingConstraints\" />\r\n\r\n            <TextView\r\n                android:id=\"@+id/item_tv_chap_moi_mdv2\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_gravity=\"start\"\r\n                android:ellipsize=\"end\"\r\n                android:maxLines=\"2\"\r\n                android:text=\"@string/loading\"\r\n                tools:ignore=\"MissingConstraints\" />\r\n\r\n            <RatingBar\r\n                android:id=\"@+id/ratebar_mdv2\"\r\n                android:layout_gravity=\"start\"\r\n                style=\"@style/Widget.AppCompat.RatingBar.Small\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginTop=\"5sp\" />\r\n        </LinearLayout>\r\n        <LinearLayout\r\n            android:id=\"@+id/linearLayout\"\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            app:layout_constraintEnd_toEndOf=\"parent\"\r\n            app:layout_constraintTop_toTopOf=\"parent\">\r\n            <ImageButton\r\n                android:visibility=\"gone\"\r\n                android:id=\"@+id/options_mdv2\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:background=\"@drawable/ic_baseline_more_horiz_24\"/>\r\n        </LinearLayout>\r\n    </androidx.constraintlayout.widget.ConstraintLayout>\r\n</LinearLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/item_module_view2_vertical.xml b/app/src/main/res/layout/item_module_view2_vertical.xml
+--- a/app/src/main/res/layout/item_module_view2_vertical.xml	(revision 4e732abeb089e9391817582535edbdb70a4f36bd)
++++ b/app/src/main/res/layout/item_module_view2_vertical.xml	(date 1649855159966)
+@@ -42,6 +42,7 @@
+                 android:layout_gravity="start"
+                 android:ellipsize="end"
+                 android:maxLines="2"
++                android:maxWidth="200sp"
+                 android:text="@string/loading"
+                 android:textSize="20sp"
+                 android:textStyle="bold"
+@@ -53,6 +54,7 @@
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="start"
+                 android:ellipsize="end"
++                android:maxWidth="200sp"
+                 android:maxLines="2"
+                 android:text="@string/loading"
+                 tools:ignore="MissingConstraints" />
+@@ -63,6 +65,7 @@
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="start"
+                 android:ellipsize="end"
++                android:maxWidth="200sp"
+                 android:maxLines="2"
+                 android:text="@string/loading"
+                 tools:ignore="MissingConstraints" />
+Index: app/src/main/res/values/colors.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<resources>\r\n    <color name=\"purple_200\">#FFBB86FC</color>\r\n    <color name=\"purple_500\">#FF6200EE</color>\r\n    <color name=\"purple_700\">#FF3700B3</color>\r\n<!--    <color name=\"teal_200\">#FF03DAC5</color>-->\r\n<!--    <color name=\"teal_700\">#FF018786</color>-->\r\n    <color name=\"teal_200\">#BAB38F</color>\r\n    <color name=\"teal_700\">#776E42</color>\r\n    <color name=\"black\">#082D35</color>\r\n    <color name=\"white\">#FFFFFFFF</color>\r\n    <color name=\"light_blue_600\">#FF039BE5</color>\r\n    <color name=\"light_blue_900\">#FF01579B</color>\r\n    <color name=\"light_blue_A200\">#FF40C4FF</color>\r\n    <color name=\"light_blue_A400\">#FF00B0FF</color>\r\n<!--    <color name=\"black_overlay\">#66000000</color>-->\r\n    <color name=\"black_overlay\">#082D35</color>\r\n    <color name=\"light_blue_400\">#FF29B6F6</color>\r\n    <color name=\"gray_400\">#FFBDBDBD</color>\r\n    <color name=\"gray_600\">#FF757575</color>\r\n<!--    CUSTOM-->\r\n    <color name=\"papaya_whip\">#BAB38F</color>\r\n    <color name=\"papaya_whip_2\">#776E42</color>\r\n    <color name=\"goryeo_storeroom\">#09343E</color>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/colors.xml b/app/src/main/res/values/colors.xml
+--- a/app/src/main/res/values/colors.xml	(revision 4e732abeb089e9391817582535edbdb70a4f36bd)
++++ b/app/src/main/res/values/colors.xml	(date 1649856486868)
+@@ -19,6 +19,7 @@
+     <color name="gray_400">#FFBDBDBD</color>
+     <color name="gray_600">#FF757575</color>
+ <!--    CUSTOM-->
++    <color name="harbor_rat">#757575</color>
+     <color name="papaya_whip">#BAB38F</color>
+     <color name="papaya_whip_2">#776E42</color>
+     <color name="goryeo_storeroom">#09343E</color>
+Index: app/src/main/res/values/themes.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources xmlns:tools=\"http://schemas.android.com/tools\">\r\n    <!-- Base application theme. -->\r\n    <style name=\"Theme.DocTruyenChu\" parent=\"Theme.MaterialComponents.DayNight.NoActionBar\">\r\n        <!-- Primary brand color. -->\r\n        <item name=\"colorPrimary\">@color/teal_200</item>\r\n        <item name=\"colorPrimaryVariant\">@color/black</item>\r\n        <item name=\"colorOnPrimary\">#DDDDDD</item>\r\n        <!-- Secondary brand color. -->\r\n        <item name=\"colorSecondary\">@color/teal_200</item>\r\n        <item name=\"colorSecondaryVariant\">@color/teal_700</item>\r\n        <item name=\"colorOnSecondary\">@color/black</item>\r\n        <!-- Status bar color. -->\r\n        <item name=\"android:statusBarColor\" tools:targetApi=\"l\">?attr/colorPrimaryVariant</item>\r\n        <!-- Customize your theme here. -->\r\n    </style>\r\n\r\n    <style name=\"Theme.DocTruyenChu.Fullscreen\" parent=\"Theme.DocTruyenChu\">\r\n        <item name=\"android:actionBarStyle\">@style/Widget.Theme.DocTruyenChu.ActionBar.Fullscreen\r\n        </item>\r\n        <item name=\"android:windowActionBarOverlay\">true</item>\r\n        <item name=\"android:windowBackground\">@null</item>\r\n    </style>\r\n    <style name=\"ThemeOverlay.DocTruyenChu.FullscreenContainer\" parent=\"\">\r\n        <item name=\"fullscreenBackgroundColor\">#DFDFDF</item>\r\n        <item name=\"fullscreenTextColor\">@color/light_blue_A200</item>\r\n    </style>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/themes.xml b/app/src/main/res/values/themes.xml
+--- a/app/src/main/res/values/themes.xml	(revision 4e732abeb089e9391817582535edbdb70a4f36bd)
++++ b/app/src/main/res/values/themes.xml	(date 1649864961578)
+@@ -20,8 +20,18 @@
+         <item name="android:windowActionBarOverlay">true</item>
+         <item name="android:windowBackground">@null</item>
+     </style>
++
+     <style name="ThemeOverlay.DocTruyenChu.FullscreenContainer" parent="">
+         <item name="fullscreenBackgroundColor">#DFDFDF</item>
+         <item name="fullscreenTextColor">@color/light_blue_A200</item>
+     </style>
++
++    <style name="Theme.DocTruyenChu.NoActionBar">
++        <item name="windowActionBar">false</item>
++        <item name="windowNoTitle">true</item>
++    </style>
++
++    <style name="Theme.DocTruyenChu.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
++
++    <style name="Theme.DocTruyenChu.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+ </resources>
+\ No newline at end of file
+Index: app/src/main/java/com/ak/doctruyenchu/ui/moduleView/ModuleView2.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.ak.doctruyenchu.ui.moduleView;\r\n\r\nimport android.content.Intent;\r\nimport android.graphics.drawable.Drawable;\r\nimport android.os.Bundle;\r\n\r\nimport androidx.constraintlayout.widget.ConstraintLayout;\r\nimport androidx.fragment.app.Fragment;\r\nimport androidx.recyclerview.widget.GridLayoutManager;\r\nimport androidx.recyclerview.widget.LinearLayoutManager;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport android.util.Log;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.LinearLayout;\r\nimport android.widget.TextView;\r\n\r\nimport com.ak.doctruyenchu.Constans.Constans;\r\nimport com.ak.doctruyenchu.R;\r\nimport com.ak.doctruyenchu.models.TRUYEN;\r\nimport com.ak.doctruyenchu.ui.DanhSachTruyen.DanhSachTruyen;\r\nimport com.ak.doctruyenchu.ui.ThongTinTruyen.ThongTinTruyen;\r\nimport com.ak.doctruyenchu.ui.moduleView.adapter.HolderOnClick;\r\nimport com.ak.doctruyenchu.ui.moduleView.adapter.ModuleView2Adapter;\r\nimport com.ak.doctruyenchu.ui.moduleView.adapter.OptionsOnClick;\r\n\r\nimport java.util.ArrayList;\r\n\r\n/**\r\n * A simple {@link Fragment} subclass.\r\n * Use the {@link ModuleView2#newInstance} factory method to\r\n * create an instance of this fragment.\r\n */\r\npublic class ModuleView2 extends Fragment {\r\n\r\n    // TODO: Rename parameter arguments, choose names that match\r\n    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER\r\n    private static final String ARG_PARAM1 = \"param1\";\r\n    private static final String ARG_PARAM2 = \"param2\";\r\n\r\n    // TODO: Rename and change types of parameters\r\n    private String mParam1;\r\n    private String mParam2;\r\n\r\n    private View view;\r\n    private RecyclerView recyclerView;\r\n    private ModuleView2Adapter adapter;\r\n    private TextView module_name,more;\r\n    private Module module;\r\n    private ConstraintLayout constraintLayout;\r\n    private LinearLayout background;\r\n    private ArrayList<TRUYEN> truyenArrayList;\r\n    private OptionsOnClick optionsOnClick;\r\n\r\n    public ModuleView2() {\r\n        truyenArrayList = new ArrayList<>();\r\n        // Required empty public constructor\r\n        optionsOnClick = new OptionsOnClick() {\r\n            @Override\r\n            public void onClick(TRUYEN truyen, int position) {\r\n                Log.e(\"Erro\",\"Not set event for Option click\");\r\n            }\r\n        };\r\n\r\n    }\r\n\r\n    public void setModule(Module module,ArrayList<TRUYEN> truyenArrayList){\r\n        this.module = module;\r\n        this.truyenArrayList = truyenArrayList;\r\n    }\r\n\r\n    public void setEventForOptionOnClick(OptionsOnClick optionsOnClick){this.optionsOnClick =optionsOnClick;}\r\n\r\n    /**\r\n     * Use this factory method to create a new instance of\r\n     * this fragment using the provided parameters.\r\n     *\r\n     * @param param1 Parameter 1.\r\n     * @param param2 Parameter 2.\r\n     * @return A new instance of fragment ModuleView2.\r\n     */\r\n    // TODO: Rename and change types and number of parameters\r\n\r\n    public static ModuleView2 newInstance(String param1, String param2) {\r\n        ModuleView2 fragment = new ModuleView2();\r\n        Bundle args = new Bundle();\r\n        args.putString(ARG_PARAM1, param1);\r\n        args.putString(ARG_PARAM2, param2);\r\n        fragment.setArguments(args);\r\n        return fragment;\r\n    }\r\n\r\n    @Override\r\n    public void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        if (getArguments() != null) {\r\n            mParam1 = getArguments().getString(ARG_PARAM1);\r\n            mParam2 = getArguments().getString(ARG_PARAM2);\r\n        }\r\n    }\r\n\r\n    public void notifyAdapterDelete(int position){\r\n        adapter.deleteItem(position);\r\n        adapter.notifyDataSetChanged();\r\n    }\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\r\n                             Bundle savedInstanceState) {\r\n        // Inflate the layout for this fragment\r\n        view = inflater.inflate(R.layout.module_view2, container, false);\r\n\r\n//        setUI();\r\n        //\r\n        adapter = new ModuleView2Adapter(truyenArrayList);\r\n\r\n        try {\r\n            unitUI();\r\n            event();\r\n        }catch (NullPointerException e){\r\n            module_name = view.findViewById(R.id.tv_name_mdv2);\r\n            constraintLayout = view.findViewById(R.id.title_mdv2);\r\n            more = view.findViewById(R.id.more_mdv2);\r\n            recyclerView = view.findViewById(R.id.rcv_mdv2);\r\n            GridLayoutManager  x = new GridLayoutManager(getContext(),2);\r\n            recyclerView.setLayoutManager(x);\r\n        }\r\n        recyclerView.setAdapter(adapter);\r\n        event();\r\n        //\r\n        return view;\r\n    }\r\n    private void event() {\r\n        constraintLayout.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(getContext(), DanhSachTruyen.class);\r\n                intent.putExtra(Constans.KEY,module.moduleName);\r\n                if (module.moduleName.equals(Constans.TRUYEN_CUNG_TAC_GIA))\r\n                    intent.putExtra(Constans.TAC_GIA_KEY,truyenArrayList.get(0).getTac_gia());\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        adapter.onClick(new HolderOnClick() {\r\n            @Override\r\n            public void onClick(TRUYEN truyen) {\r\n                Intent intent = new Intent(getContext(), ThongTinTruyen.class);\r\n                intent.putExtra(\"ten_truyen\",truyen.getTen_truyen());\r\n                startActivity(intent);\r\n            }\r\n        });\r\n    }\r\n\r\n    private void unitUI() {\r\n        background = view.findViewById(R.id.background_module_view2);\r\n        if ( module.backgroungColor!=0){\r\n            background.setBackground(getContext().getDrawable(module.backgroungColor));\r\n        }\r\n        constraintLayout = view.findViewById(R.id.title_mdv2);\r\n        module_name = view.findViewById(R.id.tv_name_mdv2);\r\n        more = view.findViewById(R.id.more_mdv2);\r\n        module_name.setText(module.moduleName);\r\n        if (module.titleColor!=0){\r\n            module_name.setTextColor(getContext().getColor(module.titleColor));\r\n            more.setTextColor(getContext().getColor(module.titleColor));\r\n        }\r\n        adapter.setTextColor(module.titleColor,getContext());\r\n        adapter.setOrientationVertical(module.orientationVertical);\r\n        adapter.EnableOptionButton(module.enableOptionButton);\r\n        adapter.setOptionsOnClick(optionsOnClick);\r\n        recyclerView = view.findViewById(R.id.rcv_mdv2);\r\n        GridLayoutManager  x = new GridLayoutManager(getContext(),module.rows);\r\n        if (module.orientationVertical)\r\n            x.setOrientation(GridLayoutManager.VERTICAL);\r\n        else\r\n            x.setOrientation(GridLayoutManager.HORIZONTAL);\r\n        recyclerView.setLayoutManager(x);\r\n    }\r\n\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/ak/doctruyenchu/ui/moduleView/ModuleView2.java b/app/src/main/java/com/ak/doctruyenchu/ui/moduleView/ModuleView2.java
+--- a/app/src/main/java/com/ak/doctruyenchu/ui/moduleView/ModuleView2.java	(revision 4e732abeb089e9391817582535edbdb70a4f36bd)
++++ b/app/src/main/java/com/ak/doctruyenchu/ui/moduleView/ModuleView2.java	(date 1649859863309)
+@@ -1,13 +1,11 @@
+ package com.ak.doctruyenchu.ui.moduleView;
+ 
+ import android.content.Intent;
+-import android.graphics.drawable.Drawable;
+ import android.os.Bundle;
+ 
+ import androidx.constraintlayout.widget.ConstraintLayout;
+ import androidx.fragment.app.Fragment;
+ import androidx.recyclerview.widget.GridLayoutManager;
+-import androidx.recyclerview.widget.LinearLayoutManager;
+ import androidx.recyclerview.widget.RecyclerView;
+ 
+ import android.util.Log;
+@@ -22,7 +20,7 @@
+ import com.ak.doctruyenchu.models.TRUYEN;
+ import com.ak.doctruyenchu.ui.DanhSachTruyen.DanhSachTruyen;
+ import com.ak.doctruyenchu.ui.ThongTinTruyen.ThongTinTruyen;
+-import com.ak.doctruyenchu.ui.moduleView.adapter.HolderOnClick;
++import com.ak.doctruyenchu.ui.INTERFACE.HolderOnClick;
+ import com.ak.doctruyenchu.ui.moduleView.adapter.ModuleView2Adapter;
+ import com.ak.doctruyenchu.ui.moduleView.adapter.OptionsOnClick;
+ 
+Index: app/src/main/res/drawable/ic_baseline_remove_red_eye_24.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/ic_baseline_remove_red_eye_24.xml b/app/src/main/res/drawable/ic_baseline_remove_red_eye_24.xml
+new file mode 100644
+--- /dev/null	(date 1649857286016)
++++ b/app/src/main/res/drawable/ic_baseline_remove_red_eye_24.xml	(date 1649857286016)
+@@ -0,0 +1,10 @@
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:width="24dp"
++    android:height="24dp"
++    android:viewportWidth="24"
++    android:viewportHeight="24"
++    android:tint="?attr/colorControlNormal">
++  <path
++      android:fillColor="@android:color/white"
++      android:pathData="M12,4.5C7,4.5 2.73,7.61 1,12c1.73,4.39 6,7.5 11,7.5s9.27,-3.11 11,-7.5c-1.73,-4.39 -6,-7.5 -11,-7.5zM12,17c-2.76,0 -5,-2.24 -5,-5s2.24,-5 5,-5 5,2.24 5,5 -2.24,5 -5,5zM12,9c-1.66,0 -3,1.34 -3,3s1.34,3 3,3 3,-1.34 3,-3 -1.34,-3 -3,-3z"/>
++</vector>
+Index: app/src/main/java/com/ak/doctruyenchu/ui/TrangChu/TrangChu_fragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.ak.doctruyenchu.ui.TrangChu;\r\n\r\nimport android.os.Bundle;\r\n\r\nimport androidx.appcompat.widget.SearchView;\r\nimport androidx.fragment.app.Fragment;\r\n\r\nimport android.util.Log;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.ImageSwitcher;\r\n\r\nimport com.ak.doctruyenchu.Constans.Comco;\r\nimport com.ak.doctruyenchu.Constans.Constans;\r\nimport com.ak.doctruyenchu.R;\r\nimport com.ak.doctruyenchu.models.TRUYEN;\r\nimport com.ak.doctruyenchu.ui.moduleView.Module;\r\nimport com.ak.doctruyenchu.ui.moduleView.ModuleView1;\r\nimport com.ak.doctruyenchu.ui.moduleView.ModuleView2;\r\n\r\nimport java.util.ArrayList;\r\n\r\n/**\r\n * A simple {@link Fragment} subclass.\r\n * Use the {@link TrangChu_fragment#newInstance} factory method to\r\n * create an instance of this fragment.\r\n */\r\npublic class TrangChu_fragment extends Fragment {\r\n\r\n    // TODO: Rename parameter arguments, choose names that match\r\n    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER\r\n    private static final String ARG_PARAM1 = \"param1\";\r\n    private static final String ARG_PARAM2 = \"param2\";\r\n\r\n    // TODO: Rename and change types of parameters\r\n    private String mParam1;\r\n    private String mParam2;\r\n\r\n    //\r\n    private View view;\r\n    private SearchView searchView;\r\n\r\n    public TrangChu_fragment() {\r\n        // Required empty public constructor\r\n    }\r\n\r\n    /**\r\n     * Use this factory method to create a new instance of\r\n     * this fragment using the provided parameters.\r\n     *\r\n     * @param param1 Parameter 1.\r\n     * @param param2 Parameter 2.\r\n     * @return A new instance of fragment TrangChu_fragment.\r\n     */\r\n    // TODO: Rename and change types and number of parameters\r\n    public static TrangChu_fragment newInstance(String param1, String param2) {\r\n        TrangChu_fragment fragment = new TrangChu_fragment();\r\n        Bundle args = new Bundle();\r\n        args.putString(ARG_PARAM1, param1);\r\n        args.putString(ARG_PARAM2, param2);\r\n        fragment.setArguments(args);\r\n        return fragment;\r\n    }\r\n\r\n    @Override\r\n    public void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        if (getArguments() != null) {\r\n            mParam1 = getArguments().getString(ARG_PARAM1);\r\n            mParam2 = getArguments().getString(ARG_PARAM2);\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\r\n                             Bundle savedInstanceState) {\r\n        // Inflate the layout for this fragment\r\n        view = inflater.inflate(R.layout.fragment_trang_chu_fragment, container, false);\r\n\r\n        Log.e(\"Color\",\"\"+R.color.white);\r\n\r\n        unitView();\r\n        return view;\r\n    }\r\n\r\n    private void unitView(){\r\n        ModuleView1 moduleView1 = new ModuleView1();\r\n        new Comco().layTopTruyenMoiNhat(10, new Comco.DataRecived() {\r\n            @Override\r\n            public void complete(ArrayList<TRUYEN> truyenArrayList) {\r\n                moduleView1.setModule(new Module(getContext().getString(R.string.truyen_moi_nhat),false),truyenArrayList);\r\n                setView(moduleView1,R.id.home_frg1);\r\n            }\r\n        });\r\n\r\n        //\r\n        ModuleView2 moduleView2 = new ModuleView2();\r\n        new Comco().laytTopTruyenDeCu(10,new Comco.DataRecived() {\r\n            @Override\r\n            public void complete(ArrayList<TRUYEN> truyenArrayList) {\r\n                moduleView2.setModule(new Module(getString(R.string.truyen_de_cu),2,false,R.color.black),truyenArrayList);\r\n                setView(moduleView2,R.id.home_frg2);\r\n            }\r\n        });\r\n\r\n        ModuleView2 moduleView3 = new ModuleView2();\r\n        Comco.laytTopRateTruyen(10,new Comco.DataRecived() {\r\n            @Override\r\n            public void complete(ArrayList<TRUYEN> truyenArrayList) {\r\n                moduleView3.setModule(new Module(getString(R.string.truyen_top_rate),2,false),truyenArrayList);\r\n                setView(moduleView3,R.id.home_frg3);\r\n            }\r\n        });\r\n\r\n        ModuleView2 moduleView4 = new ModuleView2();\r\n        Comco.laytTopViewTruyen(10,new Comco.DataRecived() {\r\n            @Override\r\n            public void complete(ArrayList<TRUYEN> truyenArrayList) {\r\n                moduleView4.setModule(new Module(getString(R.string.truyen_top_view),1,false,R.color.black),truyenArrayList);\r\n                setView(moduleView4,R.id.home_frg4);\r\n            }\r\n        });\r\n\r\n    }\r\n\r\n    private void setView(Fragment fragment,int id){\r\n        getChildFragmentManager()\r\n                .beginTransaction()\r\n                .replace(id,fragment)\r\n                .commit();\r\n    }\r\n\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/ak/doctruyenchu/ui/TrangChu/TrangChu_fragment.java b/app/src/main/java/com/ak/doctruyenchu/ui/TrangChu/TrangChu_fragment.java
+--- a/app/src/main/java/com/ak/doctruyenchu/ui/TrangChu/TrangChu_fragment.java	(revision 4e732abeb089e9391817582535edbdb70a4f36bd)
++++ b/app/src/main/java/com/ak/doctruyenchu/ui/TrangChu/TrangChu_fragment.java	(date 1649857030240)
+@@ -108,7 +108,7 @@
+         Comco.laytTopRateTruyen(10,new Comco.DataRecived() {
+             @Override
+             public void complete(ArrayList<TRUYEN> truyenArrayList) {
+-                moduleView3.setModule(new Module(getString(R.string.truyen_top_rate),2,false),truyenArrayList);
++                moduleView3.setModule(new Module(getString(R.string.truyen_top_rate),2,false,R.color.white,R.color.harbor_rat),truyenArrayList);
+                 setView(moduleView3,R.id.home_frg3);
+             }
+         });
+@@ -123,7 +123,6 @@
+         });
+ 
+     }
+-
+     private void setView(Fragment fragment,int id){
+         getChildFragmentManager()
+                 .beginTransaction()
+Index: app/src/main/res/drawable/ic_baseline_edit_note_white_24.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/drawable/ic_baseline_edit_note_white_24.xml b/app/src/main/res/drawable/ic_baseline_edit_note_white_24.xml
+new file mode 100644
+--- /dev/null	(date 1649858531732)
++++ b/app/src/main/res/drawable/ic_baseline_edit_note_white_24.xml	(date 1649858531732)
+@@ -0,0 +1,8 @@
++<vector android:height="24dp"
++    android:tint="?attr/moveWhenScrollAtTop"
++    android:viewportHeight="24"
++    android:viewportWidth="24"
++    android:width="24dp"
++    xmlns:android="http://schemas.android.com/apk/res/android">
++    <path android:fillColor="@android:color/white" android:pathData="M3,10h11v2H3V10zM3,8h11V6H3V8zM3,16h7v-2H3V16zM18.01,12.87l0.71,-0.71c0.39,-0.39 1.02,-0.39 1.41,0l0.71,0.71c0.39,0.39 0.39,1.02 0,1.41l-0.71,0.71L18.01,12.87zM17.3,13.58l-5.3,5.3V21h2.12l5.3,-5.3L17.3,13.58z"/>
++</vector>
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"DesignSurface\">\r\n    <option name=\"filePathToZoomLevelMap\">\r\n      <map>\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/drawable/button_state.xml\" value=\"0.2916666666666667\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/drawable/circle.xml\" value=\"0.2713541666666667\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/drawable/ic_baseline_edit_24.xml\" value=\"0.1755\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/drawable/ic_baseline_edit_note_24.xml\" value=\"0.1755\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/drawable/ic_baseline_lock_24.xml\" value=\"0.1755\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/drawable/ic_baseline_signout_24.xml\" value=\"0.1755\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/drawable/ic_notifications_black_24dp.xml\" value=\"0.37864583333333335\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/drawable/rounded.xml\" value=\"0.37864583333333335\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/activity_chinh_sua_thong_tin.xml\" value=\"0.2755208333333333\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/activity_dang_truyen.xml\" value=\"0.3088235294117647\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/activity_danh_sach_truyen.xml\" value=\"0.3625\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/activity_doc_truyen.xml\" value=\"0.24166666666666667\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/activity_login.xml\" value=\"0.2265625\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/activity_main.xml\" value=\"0.1762917933130699\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/activity_quan_ly_dang_truyen.xml\" value=\"0.2966485507246377\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/activity_thong_tin_truyen.xml\" value=\"0.20260416666666667\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/binh_luan_va_danh_gia.xml\" value=\"0.2980072463768116\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/bottom_sheet_layout.xml\" value=\"0.24114583333333334\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/bottom_sheet_tu_truyen.xml\" value=\"0.2980072463768116\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/bottomsheet.xml\" value=\"0.2803442028985507\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/comment_recived.xml\" value=\"0.2980072463768116\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/comment_send.xml\" value=\"0.2980072463768116\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/fragment_ca_nhan_fragment.xml\" value=\"0.25616698292220114\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/fragment_chua_dang_nhap.xml\" value=\"0.33559782608695654\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/fragment_da_dang_nhap.xml\" value=\"0.25\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/fragment_dang_ky_dang_nhap.xml\" value=\"0.25\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/fragment_danh_sach_chuong_fragment.xml\" value=\"0.2755208333333333\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/fragment_dashboard.xml\" value=\"0.2957427536231884\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/fragment_gioi_thieu_truyen.xml\" value=\"0.2755208333333333\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/fragment_home.xml\" value=\"0.2957427536231884\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/fragment_lich_su_doc_truyen.xml\" value=\"0.33559782608695654\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/fragment_list_chuong.xml\" value=\"0.23489583333333333\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/fragment_module_view2.xml\" value=\"0.33559782608695654\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/fragment_notifications.xml\" value=\"0.21145833333333333\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/fragment_test_list.xml\" value=\"0.3328125\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/fragment_tool_comment_rate.xml\" value=\"0.29739583333333336\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/fragment_trang_chu_fragment.xml\" value=\"0.2\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/fragment_trang_thong_tin_ca_nhan.xml\" value=\"0.29583333333333334\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/fragment_truyen_danh_dau.xml\" value=\"0.2980072463768116\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/fragment_truyen_moi_nhat.xml\" value=\"0.22\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/item_comment.xml\" value=\"0.2078125\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/item_danh_sach_chuong.xml\" value=\"0.22\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/item_danh_sach_truyen.xml\" value=\"0.33\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/item_for_home.xml\" value=\"0.2957427536231884\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/item_module_view1.xml\" value=\"0.33559782608695654\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/item_module_view2.xml\" value=\"0.33559782608695654\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/item_module_view2_vertical.xml\" value=\"0.2803442028985507\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/item_module_view_2.xml\" value=\"0.22\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/item_truyen_moi_nhat_list.xml\" value=\"0.3625\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/module_view1.xml\" value=\"0.2109375\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/module_view2.xml\" value=\"0.33559782608695654\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/sample_k_button.xml\" value=\"0.33559782608695654\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/sample_my_view.xml\" value=\"0.33559782608695654\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/thong_bao_fragment.xml\" value=\"0.27447916666666666\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/toolbar_view.xml\" value=\"0.2803442028985507\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/tu_truyen_fragment.xml\" value=\"0.1934156378600823\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/layout/zd.xml\" value=\"0.2957427536231884\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/menu/bottom_nav_menu.xml\" value=\"0.3625\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/menu/thong_tin_truyen_menu.xml\" value=\"0.2755208333333333\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/mipmap-anydpi-v26/profile.xml\" value=\"0.21875\" />\r\n        <entry key=\"..\\:/Android Studio/DocTruyenChu/app/src/main/res/mipmap-anydpi-v26/profile_round.xml\" value=\"0.21875\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_11\" default=\"true\" project-jdk-name=\"Android Studio default JDK\" project-jdk-type=\"JavaSDK\" />\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision 4e732abeb089e9391817582535edbdb70a4f36bd)
++++ b/.idea/misc.xml	(date 1649865151898)
+@@ -5,8 +5,11 @@
+       <map>
+         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/drawable/button_state.xml" value="0.2916666666666667" />
+         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/drawable/circle.xml" value="0.2713541666666667" />
++        <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/drawable/ic_baseline_arrow_back_ios_24.xml" value="0.2" />
++        <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/drawable/ic_baseline_comment_bank_24.xml" value="0.2" />
+         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.1755" />
+         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/drawable/ic_baseline_edit_note_24.xml" value="0.1755" />
++        <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/drawable/ic_baseline_edit_note_white_24.xml" value="0.2" />
+         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.1755" />
+         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/drawable/ic_baseline_signout_24.xml" value="0.1755" />
+         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.37864583333333335" />
+@@ -17,6 +20,7 @@
+         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/layout/activity_doc_truyen.xml" value="0.24166666666666667" />
+         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/layout/activity_login.xml" value="0.2265625" />
+         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/layout/activity_main.xml" value="0.1762917933130699" />
++        <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/layout/activity_quan_ly.xml" value="0.3625" />
+         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/layout/activity_quan_ly_dang_truyen.xml" value="0.2966485507246377" />
+         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/layout/activity_thong_tin_truyen.xml" value="0.20260416666666667" />
+         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/layout/binh_luan_va_danh_gia.xml" value="0.2980072463768116" />
+@@ -37,6 +41,7 @@
+         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/layout/fragment_list_chuong.xml" value="0.23489583333333333" />
+         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/layout/fragment_module_view2.xml" value="0.33559782608695654" />
+         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/layout/fragment_notifications.xml" value="0.21145833333333333" />
++        <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/layout/fragment_quan_ly.xml" value="0.3625" />
+         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/layout/fragment_test_list.xml" value="0.3328125" />
+         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/layout/fragment_tool_comment_rate.xml" value="0.29739583333333336" />
+         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/layout/fragment_trang_chu_fragment.xml" value="0.2" />
+Index: app/src/main/java/com/ak/doctruyenchu/ui/ThongTinTruyen/Fragment_tool_comment_rate.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.ak.doctruyenchu.ui.ThongTinTruyen;\r\n\r\nimport android.os.Bundle;\r\n\r\nimport androidx.fragment.app.Fragment;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport android.os.CountDownTimer;\r\nimport android.util.Log;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.EditText;\r\nimport android.widget.RatingBar;\r\nimport android.widget.TextView;\r\n\r\nimport com.ak.doctruyenchu.Constans.Comco;\r\nimport com.ak.doctruyenchu.Constans.Constans;\r\nimport com.ak.doctruyenchu.R;\r\nimport com.ak.doctruyenchu.models.BinhLuan;\r\nimport com.ak.doctruyenchu.models.DanhGia;\r\nimport com.ak.doctruyenchu.models.USER;\r\nimport com.google.android.gms.tasks.OnSuccessListener;\r\nimport com.google.firebase.database.DataSnapshot;\r\n\r\nimport java.util.ArrayList;\r\n\r\n/**\r\n * A simple {@link Fragment} subclass.\r\n * Use the {@link Fragment_tool_comment_rate#newInstance} factory method to\r\n * create an instance of this fragment.\r\n */\r\npublic class Fragment_tool_comment_rate extends Fragment {\r\n\r\n    // TODO: Rename parameter arguments, choose names that match\r\n    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER\r\n    private static final String ARG_PARAM1 = \"param1\";\r\n    private static final String ARG_PARAM2 = \"param2\";\r\n\r\n    // TODO: Rename and change types of parameters\r\n    private String mParam1;\r\n    private String mParam2;\r\n\r\n    private View view;\r\n    private EditText editText;\r\n    private TextView button, sentRate;\r\n    private String ten_truyen;\r\n    private RecyclerView recyclerView;\r\n    private BinhLuanAdapter adapter;\r\n    private ArrayList<BinhLuan> binhLuanArrayList;\r\n    private CountDownTimer countDownTimer;\r\n    private RatingBar ratingBar;\r\n    private boolean rated;\r\n\r\n    public Fragment_tool_comment_rate() {\r\n        // Required empty public constructor\r\n    }\r\n\r\n    /**\r\n     * Use this factory method to create a new instance of\r\n     * this fragment using the provided parameters.\r\n     *\r\n     * @param param1 Parameter 1.\r\n     * @param param2 Parameter 2.\r\n     * @return A new instance of fragment Fragment_tool_comment_rate.\r\n     */\r\n    // TODO: Rename and change types and number of parameters\r\n    public static Fragment_tool_comment_rate newInstance(String param1, String param2) {\r\n        Fragment_tool_comment_rate fragment = new Fragment_tool_comment_rate();\r\n        Bundle args = new Bundle();\r\n        args.putString(ARG_PARAM1, param1);\r\n        args.putString(ARG_PARAM2, param2);\r\n        fragment.setArguments(args);\r\n        return fragment;\r\n    }\r\n\r\n    @Override\r\n    public void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        if (getArguments() != null) {\r\n            mParam1 = getArguments().getString(ARG_PARAM1);\r\n            mParam2 = getArguments().getString(ARG_PARAM2);\r\n        }\r\n        ten_truyen = getArguments().getString(\"ten_truyen\");\r\n    }\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\r\n                             Bundle savedInstanceState) {\r\n        // Inflate the layout for this fragment\r\n        view = inflater.inflate(R.layout.fragment_tool_comment_rate, container, false);\r\n\r\n        editText = view.findViewById(R.id.edit_comment);\r\n        sentRate = view.findViewById(R.id.bt_sent_rate);\r\n        button = view.findViewById(R.id.bt_gui_comment);\r\n        ratingBar = view.findViewById(R.id.ratingBar_com_rate);\r\n\r\n        run();\r\n\r\n        return view;\r\n    }\r\n\r\n    private void run(){\r\n        if (Constans.AUTH.getCurrentUser()!=null){\r\n            sendComment();\r\n            Constans.DATABASE.getReference(Constans.DANH_GIA).child(ten_truyen).child(Constans.AUTH.getCurrentUser().getUid())\r\n                    .get()\r\n                    .addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {\r\n                        @Override\r\n                        public void onSuccess(DataSnapshot dataSnapshot) {\r\n                            DanhGia danhGia = dataSnapshot.getValue(DanhGia.class);\r\n                            if (danhGia!=null){\r\n                                rated = true;\r\n                                ratingBar.setRating(danhGia.getRate());\r\n                                sentRate.setClickable(false);\r\n                                sentRate.setText(\"Đã đánh giá\");\r\n                                sentRate.setBackground(getContext().getDrawable(R.color.gray_600));\r\n                            }\r\n                        }\r\n                    });\r\n\r\n            sentRate.setOnClickListener(new View.OnClickListener() {\r\n                @Override\r\n                public void onClick(View v) {\r\n                    float rate = ratingBar.getRating();\r\n                    if (rated){\r\n                        Comco.capNhatRate(ten_truyen,rate);\r\n                    }else {\r\n                        Comco.capNhatRateVaLuotRate(ten_truyen,rate);\r\n                        rated = true;\r\n                    }\r\n                    Constans.DATABASE.getReference(Constans.DANH_GIA).child(ten_truyen).child(Constans.AUTH.getCurrentUser().getUid())\r\n                            .setValue(new DanhGia(rate));\r\n                    sentRate.setText(\"Đã gửi\");\r\n                    sentRate.setClickable(false);\r\n                    sentRate.setBackground(getContext().getDrawable(R.color.gray_600));\r\n                }\r\n            });\r\n\r\n            ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {\r\n                @Override\r\n                public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {\r\n                    sentRate.setText(\"Đánh giá lại\");\r\n                    sentRate.setClickable(true);\r\n                    sentRate.setBackground(getContext().getDrawable(R.color.teal_200));\r\n                }\r\n            });\r\n        }\r\n        else {\r\n\r\n        }\r\n    }\r\n\r\n    private void sendComment(){\r\n\r\n        button.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n\r\n                button.setClickable(false);\r\n                button.setBackground(getContext().getDrawable(R.color.gray_600));\r\n\r\n                String x = editText.getText().toString().trim();\r\n                if (x!=null || !x.equals(\"\") || !x.isEmpty()){\r\n                    Constans.DATABASE.getReference(Constans.USER).child(Constans.AUTH.getCurrentUser().getUid())\r\n                            .get()\r\n                            .addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {\r\n                                @Override\r\n                                public void onSuccess(DataSnapshot dataSnapshot) {\r\n                                    USER user = dataSnapshot.getValue(USER.class);\r\n                                    if (user!=null){\r\n                                        Constans.DATABASE.getReference(Constans.BINH_LUAN).child(ten_truyen)\r\n                                                .push()\r\n                                                .setValue(new BinhLuan(user.getTen_nguoi_dung(),user.getUid(),user.getUrl_anh_dai_dien(),x));\r\n                                        editText.setText(\"\");\r\n                                    }\r\n                                }\r\n                            });\r\n                }\r\n\r\n                countDownTimer = new CountDownTimer(60000, 1000) {\r\n                    @Override\r\n                    public void onTick(long millisUntilFinished) {\r\n                        Log.d(\"Cooldown buttun sent comment\", \"seccons: \"+millisUntilFinished/1000);\r\n                        button.setText(\"Đợi (\"+millisUntilFinished/1000+\")\");\r\n                    }\r\n                    @Override\r\n                    public void onFinish() {\r\n                        button.setText(getString(R.string.sent_a_comment));\r\n                        button.setBackground(getContext().getDrawable(R.color.teal_200));\r\n                        button.setClickable(true);\r\n                    }\r\n                }.start();\r\n            }\r\n        });\r\n    }\r\n\r\n    @Override\r\n    public void onPause() {\r\n        super.onPause();\r\n        if (countDownTimer!=null){\r\n            countDownTimer.cancel();\r\n        }\r\n        getParentFragmentManager().beginTransaction().remove(this).commit();\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/ak/doctruyenchu/ui/ThongTinTruyen/Fragment_tool_comment_rate.java b/app/src/main/java/com/ak/doctruyenchu/ui/ThongTinTruyen/Fragment_tool_comment_rate.java
+--- a/app/src/main/java/com/ak/doctruyenchu/ui/ThongTinTruyen/Fragment_tool_comment_rate.java	(revision 4e732abeb089e9391817582535edbdb70a4f36bd)
++++ b/app/src/main/java/com/ak/doctruyenchu/ui/ThongTinTruyen/Fragment_tool_comment_rate.java	(date 1649855855348)
+@@ -20,6 +20,7 @@
+ import com.ak.doctruyenchu.models.BinhLuan;
+ import com.ak.doctruyenchu.models.DanhGia;
+ import com.ak.doctruyenchu.models.USER;
++import com.ak.doctruyenchu.ui.ThongTinTruyen.adapter.BinhLuanAdapter;
+ import com.google.android.gms.tasks.OnSuccessListener;
+ import com.google.firebase.database.DataSnapshot;
+ 
+Index: app/src/main/java/com/ak/doctruyenchu/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.ak.doctruyenchu;\r\n\r\nimport android.os.Bundle;\r\n\r\nimport com.ak.doctruyenchu.Constans.Constans;\r\nimport com.ak.doctruyenchu.models.TEST;\r\nimport com.google.android.material.bottomnavigation.BottomNavigationView;\r\nimport androidx.appcompat.app.AppCompatActivity;\r\nimport androidx.navigation.NavController;\r\nimport androidx.navigation.Navigation;\r\nimport androidx.navigation.ui.NavigationUI;\r\n\r\nimport java.util.ArrayList;\r\n\r\npublic class MainActivity extends AppCompatActivity {\r\n    private BottomNavigationView bottomNavigationView;\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_main);\r\n//        MaterialToolbar toolbar = findViewById(R.id.my_toolbar);\r\n//        setSupportActionBar(toolbar);\r\n        bottomNavigationView = findViewById(R.id.nav_view);\r\n//        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(\r\n//                R.id.trangChu_fragment, R.id.caNhan_fragment, R.id.tu_truyen_fragment)\r\n//                .build();\r\n        NavController navController = Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment_activity_main);\r\n//        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);\r\n        NavigationUI.setupWithNavController(bottomNavigationView, navController);\r\n\r\n\r\n    }\r\n\r\n}\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/ak/doctruyenchu/MainActivity.java b/app/src/main/java/com/ak/doctruyenchu/MainActivity.java
+--- a/app/src/main/java/com/ak/doctruyenchu/MainActivity.java	(revision 4e732abeb089e9391817582535edbdb70a4f36bd)
++++ b/app/src/main/java/com/ak/doctruyenchu/MainActivity.java	(date 1649855855372)
+@@ -1,10 +1,20 @@
+ package com.ak.doctruyenchu;
+ 
+ import android.os.Bundle;
++import android.os.Trace;
++import android.util.Log;
+ 
+ import com.ak.doctruyenchu.Constans.Constans;
+ import com.ak.doctruyenchu.models.TEST;
++import com.ak.doctruyenchu.models.TRUYEN;
++import com.google.android.gms.tasks.OnCompleteListener;
++import com.google.android.gms.tasks.OnSuccessListener;
++import com.google.android.gms.tasks.Task;
+ import com.google.android.material.bottomnavigation.BottomNavigationView;
++import com.google.firebase.database.DataSnapshot;
++import com.google.firebase.database.FirebaseDatabase;
++
++import androidx.annotation.NonNull;
+ import androidx.appcompat.app.AppCompatActivity;
+ import androidx.navigation.NavController;
+ import androidx.navigation.Navigation;
+@@ -29,6 +39,22 @@
+         NavigationUI.setupWithNavController(bottomNavigationView, navController);
+ 
+ 
++//        Constans.DATABASE.getReference().child(Constans.TRUYEN)
++//                .get()
++//                .addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
++//                    @Override
++//                    public void onComplete(@NonNull Task<DataSnapshot> task) {
++//                        if (task.isSuccessful()){
++//                            DataSnapshot data = task.getResult();
++//                            for (DataSnapshot x : data.getChildren()){
++//
++//                            }
++//                        }
++//                    }
++//                });
++
++        Log.e("Color",""+R.color.black);
++
+     }
+ 
+ }
+Index: app/src/main/java/com/ak/doctruyenchu/ui/moduleView/adapter/ModuleView1Adapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.ak.doctruyenchu.ui.moduleView.adapter;\r\n\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.ImageView;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport com.ak.doctruyenchu.R;\r\nimport com.ak.doctruyenchu.models.TRUYEN;\r\nimport com.squareup.picasso.Picasso;\r\n\r\nimport java.util.ArrayList;\r\n\r\npublic class ModuleView1Adapter extends RecyclerView.Adapter {\r\n    private ArrayList<TRUYEN> truyenArrayList;\r\n    private HolderOnClick holderOnClick;\r\n    //test\r\n\r\n\r\n    public ModuleView1Adapter() {\r\n\r\n\r\n    }\r\n\r\n    public ModuleView1Adapter(ArrayList<TRUYEN> truyenArrayList) {\r\n        this.truyenArrayList = truyenArrayList;\r\n    }\r\n\r\n    @NonNull\r\n    @Override\r\n    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {\r\n        View view = LayoutInflater.from(parent.getContext())\r\n                .inflate(R.layout.item_module_view1,parent,false);\r\n        return new ModuleView1Adapter.ItemHolder(view);\r\n    }\r\n\r\n    @Override\r\n    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {\r\n        ((ItemHolder) holder).bind(truyenArrayList.get(position));\r\n    }\r\n\r\n    @Override\r\n    public int getItemCount() {\r\n        return truyenArrayList.size();\r\n    }\r\n\r\n    public void onClick(HolderOnClick holderOnClick){\r\n        this.holderOnClick=holderOnClick;\r\n    }\r\n\r\n    private class ItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener{\r\n        private ImageView imageView;\r\n        public ItemHolder(@NonNull View itemView) {\r\n            super(itemView);\r\n            imageView = itemView.findViewById(R.id.image_item_module_view1);\r\n            itemView.setOnClickListener(this::onClick);\r\n        }\r\n\r\n        public void bind(TRUYEN truyen){\r\n            Picasso.get()\r\n                    .load(truyen.getUrl_anh_nen_truyen())\r\n                    .into(imageView);\r\n        }\r\n\r\n        @Override\r\n        public void onClick(View v) {\r\n            holderOnClick.onClick(truyenArrayList.get(getAdapterPosition()));\r\n        }\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/ak/doctruyenchu/ui/moduleView/adapter/ModuleView1Adapter.java b/app/src/main/java/com/ak/doctruyenchu/ui/moduleView/adapter/ModuleView1Adapter.java
+--- a/app/src/main/java/com/ak/doctruyenchu/ui/moduleView/adapter/ModuleView1Adapter.java	(revision 4e732abeb089e9391817582535edbdb70a4f36bd)
++++ b/app/src/main/java/com/ak/doctruyenchu/ui/moduleView/adapter/ModuleView1Adapter.java	(date 1649859863335)
+@@ -10,6 +10,7 @@
+ 
+ import com.ak.doctruyenchu.R;
+ import com.ak.doctruyenchu.models.TRUYEN;
++import com.ak.doctruyenchu.ui.INTERFACE.HolderOnClick;
+ import com.squareup.picasso.Picasso;
+ 
+ import java.util.ArrayList;
+Index: app/src/main/res/layout/item_comment.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"wrap_content\"\r\n    android:layout_marginStart=\"8dp\"\r\n    android:layout_marginTop=\"16dp\">\r\n\r\n    <TextView\r\n        android:id=\"@+id/comment_date\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:paddingStart=\"8dp\"\r\n        android:paddingTop=\"4dp\"\r\n        android:paddingEnd=\"8dp\"\r\n        android:layout_marginStart=\"5sp\"\r\n        android:paddingBottom=\"4dp\"\r\n        android:text=\"@string/loading\"\r\n        android:textColor=\"#C0C0C0\"\r\n        android:textSize=\"10sp\"\r\n        app:layout_constraintBottom_toBottomOf=\"parent\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/card_comment_img\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/card_comment_content\" />\r\n\r\n    <androidx.cardview.widget.CardView\r\n        android:id=\"@+id/card_comment_img\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        app:cardCornerRadius=\"50sp\"\r\n        android:layout_margin=\"5sp\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" >\r\n        <ImageView\r\n            android:scaleType=\"centerCrop\"\r\n            android:id=\"@+id/image_comment\"\r\n            android:layout_width=\"50sp\"\r\n            android:layout_height=\"50sp\"\r\n            android:contentDescription=\"User Icon\" />\r\n    </androidx.cardview.widget.CardView>\r\n\r\n    <TextView\r\n        android:id=\"@+id/comment_name\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:text=\"@string/loading\"\r\n        android:textSize=\"16sp\"\r\n        android:layout_margin=\"5sp\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/card_comment_img\"\r\n        app:layout_constraintTop_toTopOf=\"parent\" />\r\n\r\n    <androidx.cardview.widget.CardView\r\n        android:id=\"@+id/card_comment_content\"\r\n        android:layout_width=\"wrap_content\"\r\n        android:layout_height=\"wrap_content\"\r\n        app:cardCornerRadius=\"20sp\"\r\n        app:cardBackgroundColor=\"#eef1f6\"\r\n        android:layout_margin=\"5sp\"\r\n        app:cardElevation=\"0dp\"\r\n        app:cardPreventCornerOverlap=\"false\"\r\n        app:cardUseCompatPadding=\"true\"\r\n        app:layout_constraintStart_toEndOf=\"@+id/card_comment_img\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/comment_name\">\r\n        <LinearLayout\r\n            android:layout_width=\"wrap_content\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:orientation=\"vertical\">\r\n            <TextView\r\n                android:id=\"@+id/comment_content\"\r\n                android:layout_width=\"wrap_content\"\r\n                android:layout_height=\"wrap_content\"\r\n                android:layout_marginBottom=\"8dp\"\r\n                android:maxWidth=\"260dp\"\r\n                android:paddingLeft=\"12dp\"\r\n                android:paddingTop=\"8dp\"\r\n                android:paddingRight=\"12dp\"\r\n                android:text=\"@string/loading\"\r\n                android:textColor=\"#000000\"\r\n                android:textSize=\"16sp\" />\r\n        </LinearLayout>\r\n\r\n    </androidx.cardview.widget.CardView>\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/item_comment.xml b/app/src/main/res/layout/item_comment.xml
+--- a/app/src/main/res/layout/item_comment.xml	(revision 4e732abeb089e9391817582535edbdb70a4f36bd)
++++ b/app/src/main/res/layout/item_comment.xml	(date 1649855699220)
+@@ -53,7 +53,7 @@
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         app:cardCornerRadius="20sp"
+-        app:cardBackgroundColor="#eef1f6"
++        app:cardBackgroundColor="@color/papaya_whip"
+         android:layout_margin="5sp"
+         app:cardElevation="0dp"
+         app:cardPreventCornerOverlap="false"
+@@ -74,7 +74,7 @@
+                 android:paddingTop="8dp"
+                 android:paddingRight="12dp"
+                 android:text="@string/loading"
+-                android:textColor="#000000"
++                android:textColor="@color/white"
+                 android:textSize="16sp" />
+         </LinearLayout>
+ 
+Index: app/src/main/res/layout/fragment_da_dang_nhap.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:id=\"@+id/container\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    android:orientation=\"vertical\">\r\n    <com.google.android.material.appbar.AppBarLayout\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"400sp\"\r\n        android:fitsSystemWindows=\"true\"\r\n        android:theme=\"@style/Theme.DocTruyenChu\"\r\n        android:id=\"@+id/appbar_ttt\">\r\n        <com.google.android.material.appbar.CollapsingToolbarLayout\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\"\r\n            android:fitsSystemWindows=\"true\"\r\n            app:contentScrim=\"?attr/colorPrimary\"\r\n            app:layout_scrollFlags=\"scroll|exitUntilCollapsed|snap\"\r\n            app:title=\"Thong tin truyen\"\r\n            android:id=\"@+id/collap_toolbar_ttt\">\r\n            <ImageView\r\n                app:layout_collapseMode=\"parallax\"\r\n                android:id=\"@+id/background_ddn\"\r\n                android:scaleType=\"centerCrop\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"/>\r\n            <LinearLayout\r\n                app:layout_collapseMode=\"parallax\"\r\n                android:padding=\"30sp\"\r\n                android:gravity=\"center\"\r\n                android:orientation=\"horizontal\"\r\n                android:layout_width=\"match_parent\"\r\n                android:layout_height=\"match_parent\"\r\n                tools:ignore=\"MissingConstraints\">\r\n                <androidx.cardview.widget.CardView\r\n                    android:layout_margin=\"5sp\"\r\n                    app:cardCornerRadius=\"100sp\"\r\n                    android:layout_width=\"wrap_content\"\r\n                    android:layout_height=\"wrap_content\">\r\n                    <ImageView\r\n                        android:scaleType=\"centerCrop\"\r\n                        android:id=\"@+id/img_anh_dai_dien\"\r\n                        android:src=\"@drawable/ic_baseline_person_outline_24\"\r\n                        android:layout_width=\"150sp\"\r\n                        android:layout_height=\"150sp\"/>\r\n                </androidx.cardview.widget.CardView>\r\n                    <LinearLayout\r\n                        android:orientation=\"vertical\"\r\n                        android:layout_marginLeft=\"10sp\"\r\n                        android:gravity=\"center_vertical\"\r\n                        android:layout_width=\"match_parent\"\r\n                        android:layout_height=\"match_parent\">\r\n                        <TextView\r\n                            android:id=\"@+id/tv_ten_nguoi_dung\"\r\n                            android:textSize=\"20sp\"\r\n                            android:textColor=\"@color/white\"\r\n                            android:textStyle=\"bold\"\r\n                            android:text=\"@string/loading\"\r\n                            android:layout_width=\"match_parent\"\r\n                            android:layout_height=\"wrap_content\"/>\r\n                        <TextView\r\n                            android:id=\"@+id/tv_email_nguoi_dung\"\r\n                            android:textSize=\"15sp\"\r\n                            android:textColor=\"@color/white\"\r\n                            android:text=\"@string/loading\"\r\n                            android:layout_width=\"match_parent\"\r\n                            android:layout_height=\"wrap_content\"/>\r\n                        <TextView\r\n                            android:id=\"@+id/tv_loai_tai_khoan\"\r\n                            android:textSize=\"15sp\"\r\n                            android:textColor=\"@color/white\"\r\n                            android:text=\"@string/loading\"\r\n                            android:layout_width=\"match_parent\"\r\n                            android:layout_height=\"wrap_content\"/>\r\n                        <LinearLayout\r\n                            android:layout_width=\"match_parent\"\r\n                            android:layout_height=\"wrap_content\">\r\n                            <androidx.cardview.widget.CardView\r\n                                android:id=\"@+id/bt_chinh_sua_thong_tin\"\r\n                                android:layout_margin=\"5sp\"\r\n                                app:cardCornerRadius=\"20sp\"\r\n                                android:layout_width=\"match_parent\"\r\n                                android:layout_height=\"wrap_content\">\r\n                                <TextView\r\n                                    android:drawableEnd=\"@drawable/ic_baseline_edit_24\"\r\n                                    android:padding=\"2sp\"\r\n                                    android:gravity=\"center\"\r\n                                    android:textColor=\"@color/white\"\r\n                                    android:background=\"@color/teal_200\"\r\n                                    android:text=\"@string/edit_information\"\r\n                                    android:layout_width=\"match_parent\"\r\n                                    android:layout_height=\"wrap_content\"/>\r\n                            </androidx.cardview.widget.CardView>\r\n                        </LinearLayout>\r\n                    </LinearLayout>\r\n                </LinearLayout>\r\n        </com.google.android.material.appbar.CollapsingToolbarLayout>\r\n    </com.google.android.material.appbar.AppBarLayout>\r\n    <androidx.core.widget.NestedScrollView\r\n        android:layout_marginTop=\"?actionBarSize\"\r\n        app:layout_behavior=\"@string/appbar_scrolling_view_behavior\"\r\n        android:layout_width=\"match_parent\"\r\n        android:layout_height=\"match_parent\">\r\n        <LinearLayout\r\n            android:orientation=\"vertical\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\">\r\n                <androidx.cardview.widget.CardView\r\n                    android:visibility=\"gone\"\r\n                    android:id=\"@+id/bt_dang_truyen\"\r\n                    android:layout_marginLeft=\"20sp\"\r\n                    android:layout_marginRight=\"20sp\"\r\n                    android:layout_marginTop=\"5sp\"\r\n                    android:layout_marginBottom=\"5sp\"\r\n                    app:cardCornerRadius=\"20sp\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\">\r\n                    <TextView\r\n                        android:drawableEnd=\"@drawable/ic_baseline_edit_note_24\"\r\n                        android:padding=\"2sp\"\r\n                        android:textSize=\"20sp\"\r\n                        android:gravity=\"center\"\r\n                        android:textColor=\"@color/white\"\r\n                        android:background=\"@color/teal_200\"\r\n                        android:text=\"@string/upload_truyen\"\r\n                        android:layout_width=\"match_parent\"\r\n                        android:layout_height=\"wrap_content\"/>\r\n                </androidx.cardview.widget.CardView>\r\n                <androidx.cardview.widget.CardView\r\n                    android:id=\"@+id/bt_dang_xuat\"\r\n                    android:layout_marginLeft=\"20sp\"\r\n                    android:layout_marginRight=\"20sp\"\r\n                    android:layout_marginTop=\"5sp\"\r\n                    android:layout_marginBottom=\"5sp\"\r\n                    app:cardCornerRadius=\"20sp\"\r\n                    android:layout_width=\"match_parent\"\r\n                    android:layout_height=\"wrap_content\">\r\n                    <TextView\r\n                        android:drawableEnd=\"@drawable/ic_baseline_signout_24\"\r\n                        android:padding=\"2sp\"\r\n                        android:textSize=\"20sp\"\r\n                        android:gravity=\"center\"\r\n                        android:textColor=\"@color/white\"\r\n                        android:background=\"@color/teal_200\"\r\n                        android:text=\"@string/signout\"\r\n                        android:layout_width=\"match_parent\"\r\n                        android:layout_height=\"wrap_content\"/>\r\n                </androidx.cardview.widget.CardView>\r\n        </LinearLayout>\r\n    </androidx.core.widget.NestedScrollView>\r\n</androidx.coordinatorlayout.widget.CoordinatorLayout>\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/fragment_da_dang_nhap.xml b/app/src/main/res/layout/fragment_da_dang_nhap.xml
+--- a/app/src/main/res/layout/fragment_da_dang_nhap.xml	(revision 4e732abeb089e9391817582535edbdb70a4f36bd)
++++ b/app/src/main/res/layout/fragment_da_dang_nhap.xml	(date 1649855541193)
+@@ -30,7 +30,7 @@
+                 app:layout_collapseMode="parallax"
+                 android:padding="30sp"
+                 android:gravity="center"
+-                android:orientation="horizontal"
++                android:orientation="vertical"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 tools:ignore="MissingConstraints">
+@@ -43,33 +43,35 @@
+                         android:scaleType="centerCrop"
+                         android:id="@+id/img_anh_dai_dien"
+                         android:src="@drawable/ic_baseline_person_outline_24"
+-                        android:layout_width="150sp"
+-                        android:layout_height="150sp"/>
++                        android:layout_width="200sp"
++                        android:layout_height="200sp"/>
+                 </androidx.cardview.widget.CardView>
+                     <LinearLayout
+                         android:orientation="vertical"
+-                        android:layout_marginLeft="10sp"
+-                        android:gravity="center_vertical"
++                        android:gravity="center"
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent">
+                         <TextView
+-                            android:id="@+id/tv_ten_nguoi_dung"
+-                            android:textSize="20sp"
++                            android:id="@+id/tv_loai_tai_khoan"
++                            android:textSize="15sp"
++                            android:gravity="center"
+                             android:textColor="@color/white"
+-                            android:textStyle="bold"
+                             android:text="@string/loading"
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"/>
+                         <TextView
+-                            android:id="@+id/tv_email_nguoi_dung"
+-                            android:textSize="15sp"
++                            android:gravity="center"
++                            android:id="@+id/tv_ten_nguoi_dung"
++                            android:textSize="20sp"
+                             android:textColor="@color/white"
++                            android:textStyle="bold"
+                             android:text="@string/loading"
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"/>
+                         <TextView
+-                            android:id="@+id/tv_loai_tai_khoan"
++                            android:id="@+id/tv_email_nguoi_dung"
+                             android:textSize="15sp"
++                            android:gravity="center"
+                             android:textColor="@color/white"
+                             android:text="@string/loading"
+                             android:layout_width="match_parent"
+Index: app/src/main/java/com/ak/doctruyenchu/ui/CaNhan/DaDangNhap.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.ak.doctruyenchu.ui.CaNhan;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.cardview.widget.CardView;\r\nimport androidx.core.widget.NestedScrollView;\r\nimport androidx.fragment.app.Fragment;\r\n\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.Button;\r\nimport android.widget.ImageView;\r\nimport android.widget.TextView;\r\n\r\nimport com.ak.doctruyenchu.Constans.Constans;\r\nimport com.ak.doctruyenchu.R;\r\nimport com.ak.doctruyenchu.models.USER;\r\nimport com.ak.doctruyenchu.ui.CaNhan.ChinhSuaThongTin.ChinhSuaThongTin;\r\nimport com.ak.doctruyenchu.ui.DangTruyen.DangTruyen;\r\nimport com.ak.doctruyenchu.ui.ThongTinTruyen.ThongTinTruyen;\r\nimport com.google.android.gms.tasks.OnCompleteListener;\r\nimport com.google.android.gms.tasks.Task;\r\nimport com.google.android.material.bottomsheet.BottomSheetBehavior;\r\nimport com.google.firebase.database.DataSnapshot;\r\nimport com.squareup.picasso.Picasso;\r\n\r\nimport jp.wasabeef.picasso.transformations.BlurTransformation;\r\n\r\n/**\r\n * A simple {@link Fragment} subclass.\r\n * Use the {@link DaDangNhap#newInstance} factory method to\r\n * create an instance of this fragment.\r\n */\r\npublic class DaDangNhap extends Fragment {\r\n\r\n    // TODO: Rename parameter arguments, choose names that match\r\n    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER\r\n    private static final String ARG_PARAM1 = \"param1\";\r\n    private static final String ARG_PARAM2 = \"param2\";\r\n\r\n    // TODO: Rename and change types of parameters\r\n    private String mParam1;\r\n    private String mParam2;\r\n\r\n    private View view;\r\n    private CardView bt_signout, bt_chinh_sua_thong_tin, bt_dang_truyen;\r\n\r\n    private TextView tv_ten_ngoi_dung, tv_email_nguoi_dung, tv_loai_tai_khoan;\r\n    private ImageView img_anh_dai_dien,background;\r\n    private Bundle bundle ;\r\n\r\n\r\n    public DaDangNhap() {\r\n        // Required empty public constructor\r\n    }\r\n\r\n    /**\r\n     * Use this factory method to create a new instance of\r\n     * this fragment using the provided parameters.\r\n     *\r\n     * @param param1 Parameter 1.\r\n     * @param param2 Parameter 2.\r\n     * @return A new instance of fragment DaDangNhap.\r\n     */\r\n    // TODO: Rename and change types and number of parameters\r\n    public static DaDangNhap newInstance(String param1, String param2) {\r\n        DaDangNhap fragment = new DaDangNhap();\r\n        Bundle args = new Bundle();\r\n        args.putString(ARG_PARAM1, param1);\r\n        args.putString(ARG_PARAM2, param2);\r\n        fragment.setArguments(args);\r\n        return fragment;\r\n    }\r\n\r\n    @Override\r\n    public void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        if (getArguments() != null) {\r\n            mParam1 = getArguments().getString(ARG_PARAM1);\r\n            mParam2 = getArguments().getString(ARG_PARAM2);\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\r\n                             Bundle savedInstanceState) {\r\n        // Inflate the layout for this fragment\r\n\r\n        view = inflater.inflate(R.layout.fragment_da_dang_nhap, container, false);\r\n\r\n        return view;\r\n    }\r\n\r\n    private void unitUI() {\r\n        bt_signout = view.findViewById(R.id.bt_dang_xuat);\r\n        bt_chinh_sua_thong_tin = view.findViewById(R.id.bt_chinh_sua_thong_tin);\r\n        tv_ten_ngoi_dung = view.findViewById(R.id.tv_ten_nguoi_dung);\r\n        tv_email_nguoi_dung = view.findViewById(R.id.tv_email_nguoi_dung);\r\n        img_anh_dai_dien = view.findViewById(R.id.img_anh_dai_dien);\r\n        bt_dang_truyen = view.findViewById(R.id.bt_dang_truyen);\r\n        tv_loai_tai_khoan = view.findViewById(R.id.tv_loai_tai_khoan);\r\n        background = view.findViewById(R.id.background_ddn);\r\n\r\n        //\r\n        Constans.DATABASE.getReference(\"USER\").child(Constans.AUTH.getUid()).get()\r\n                .addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {\r\n                    @Override\r\n                    public void onComplete(@NonNull Task<DataSnapshot> task) {\r\n                        if (task.isSuccessful()){\r\n                            USER user = task.getResult().getValue(USER.class);\r\n                            tv_ten_ngoi_dung.setText(user.getTen_nguoi_dung());\r\n                            tv_email_nguoi_dung.setText(user.getEmail());\r\n                            Picasso.get()\r\n                                    .load(user.getUrl_anh_dai_dien())\r\n                                    .error(R.drawable.ic_baseline_person_outline_24)\r\n                                    .into(img_anh_dai_dien);\r\n                            Picasso.get()\r\n                                    .load(R.drawable.background2)\r\n                                    .transform(new BlurTransformation(getContext(),20,1))\r\n                                    .error(R.drawable.ic_baseline_person_outline_24)\r\n                                    .into(background);\r\n                            tv_loai_tai_khoan.setText(user.getLoai_tai_khoan());\r\n                            if (user.getLoai_tai_khoan().equals(Constans.AUTHOR))\r\n                                bt_dang_truyen.setVisibility(View.VISIBLE);\r\n//                            else bt_dang_truyen.setVisibility(View.GONE);\r\n\r\n                        }\r\n                    }\r\n                });\r\n    }\r\n\r\n    private void event() {\r\n        bt_signout.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Constans.AUTH.signOut();\r\n//                getParentFragmentManager().beginTransaction().remove(getParentFragmentManager().findFragmentByTag(\"DA_DANG_NHAP\")).commit();\r\n\r\n                remove();\r\n                getParentFragmentManager().beginTransaction().replace(R.id.frg_trang_ca_nhan,new ChuaDangNhap(),\"CHUA_DANG_NHAP\").commit();\r\n            }\r\n        });\r\n\r\n        bt_chinh_sua_thong_tin.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                startActivity(new Intent(getContext(), ChinhSuaThongTin.class));\r\n            }\r\n        });\r\n\r\n        bt_dang_truyen.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                startActivity(new Intent(getContext(), DangTruyen.class));\r\n            }\r\n        });\r\n\r\n    }\r\n    @Override\r\n    public void onResume() {\r\n        super.onResume();\r\n        unitUI();\r\n        event();\r\n    }\r\n\r\n    private void remove(){\r\n        getParentFragmentManager().beginTransaction().remove(this).commit();\r\n    }\r\n\r\n    @Override\r\n    public void onPause() {\r\n        super.onPause();\r\n        remove();\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/ak/doctruyenchu/ui/CaNhan/DaDangNhap.java b/app/src/main/java/com/ak/doctruyenchu/ui/CaNhan/DaDangNhap.java
+--- a/app/src/main/java/com/ak/doctruyenchu/ui/CaNhan/DaDangNhap.java	(revision 4e732abeb089e9391817582535edbdb70a4f36bd)
++++ b/app/src/main/java/com/ak/doctruyenchu/ui/CaNhan/DaDangNhap.java	(date 1649859018601)
+@@ -20,6 +20,7 @@
+ import com.ak.doctruyenchu.models.USER;
+ import com.ak.doctruyenchu.ui.CaNhan.ChinhSuaThongTin.ChinhSuaThongTin;
+ import com.ak.doctruyenchu.ui.DangTruyen.DangTruyen;
++import com.ak.doctruyenchu.ui.DangTruyen.QuanLyDangTruyen.QuanLyDangTruyen;
+ import com.ak.doctruyenchu.ui.ThongTinTruyen.ThongTinTruyen;
+ import com.google.android.gms.tasks.OnCompleteListener;
+ import com.google.android.gms.tasks.Task;
+@@ -154,7 +155,7 @@
+         bt_dang_truyen.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+-                startActivity(new Intent(getContext(), DangTruyen.class));
++                startActivity(new Intent(getContext(), QuanLyDangTruyen.class));
+             }
+         });
+ 
+Index: app/src/main/java/com/ak/doctruyenchu/ui/DangTruyen/QuanLyDangTruyen/adapter/QLDTadapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/ak/doctruyenchu/ui/DangTruyen/QuanLyDangTruyen/adapter/QLDTadapter.java b/app/src/main/java/com/ak/doctruyenchu/ui/DangTruyen/QuanLyDangTruyen/adapter/QLDTadapter.java
+new file mode 100644
+--- /dev/null	(date 1649860430342)
++++ b/app/src/main/java/com/ak/doctruyenchu/ui/DangTruyen/QuanLyDangTruyen/adapter/QLDTadapter.java	(date 1649860430342)
+@@ -0,0 +1,84 @@
++package com.ak.doctruyenchu.ui.DangTruyen.QuanLyDangTruyen.adapter;
++
++import android.view.LayoutInflater;
++import android.view.View;
++import android.view.ViewGroup;
++import android.widget.ImageView;
++import android.widget.RatingBar;
++import android.widget.TextView;
++
++import androidx.annotation.NonNull;
++import androidx.recyclerview.widget.RecyclerView;
++
++import com.ak.doctruyenchu.R;
++import com.ak.doctruyenchu.models.TRUYEN;
++import com.ak.doctruyenchu.ui.DanhSachTruyen.adapter.DanhSachTruyenAdapter;
++import com.ak.doctruyenchu.ui.INTERFACE.HolderOnClick;
++import com.squareup.picasso.Picasso;
++
++import java.util.ArrayList;
++
++public class QLDTadapter extends RecyclerView.Adapter {
++
++    private ArrayList<TRUYEN> truyenArrayList;
++    private HolderOnClick holderOnClick;
++
++    public QLDTadapter(ArrayList<TRUYEN> truyenArrayList) {
++        this.truyenArrayList = truyenArrayList;
++    }
++
++    @NonNull
++    @Override
++    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
++        View view = LayoutInflater.from(parent.getContext())
++                .inflate(R.layout.item_danh_sach_truyen,parent,false);
++        return new ItemHolder(view);
++    }
++
++    @Override
++    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
++        ((ItemHolder)holder).bind(truyenArrayList.get(position));
++    }
++
++    @Override
++    public int getItemCount() {
++        return truyenArrayList.size();
++    }
++
++    public void onClick(HolderOnClick holderOnClick){
++        this.holderOnClick=holderOnClick;
++    }
++
++    private class ItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
++        private ImageView imageView;
++        private TextView ten_truyen, tac_gia,view, luot_danh_gia;
++        private RatingBar ratingBar;
++        public ItemHolder(@NonNull View itemView) {
++            super(itemView);
++            imageView = itemView.findViewById(R.id.item_dst_list);
++            ten_truyen = itemView.findViewById(R.id.item_ten_truyen_dst);
++            tac_gia = itemView.findViewById(R.id.item_tac_gia_dst);
++            view = itemView.findViewById(R.id.item_view_dst);
++            luot_danh_gia = itemView.findViewById(R.id.luot_rate_dst);
++            ratingBar = itemView.findViewById(R.id.rate_dst);
++            itemView.setOnClickListener(this::onClick);
++        }
++
++        public void bind(TRUYEN truyen){
++            ten_truyen.setText(truyen.getTen_truyen());
++            tac_gia.setText(truyen.getTac_gia());
++            view.setText(" "+truyen.getSo_view()+" lượt xem");
++            luot_danh_gia.setText("("+truyen.getSo_luot_rate()+" lượt)");
++            ratingBar.setRating(truyen.getRate());
++            Picasso.get()
++                    .load(truyen.getUrl_anh_nen_truyen())
++                    .into(imageView);
++        }
++
++        @Override
++        public void onClick(View v) {
++            holderOnClick.onClick(truyenArrayList.get(getAdapterPosition()));
++        }
++    }
++
++}
+Index: app/src/main/java/com/ak/doctruyenchu/ui/moduleView/ModuleView1.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.ak.doctruyenchu.ui.moduleView;\r\n\r\nimport android.content.Intent;\r\nimport android.os.Bundle;\r\n\r\nimport androidx.cardview.widget.CardView;\r\nimport androidx.constraintlayout.widget.ConstraintLayout;\r\nimport androidx.fragment.app.Fragment;\r\nimport androidx.recyclerview.widget.LinearLayoutManager;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.ImageView;\r\nimport android.widget.RatingBar;\r\nimport android.widget.TextView;\r\n\r\nimport com.ak.doctruyenchu.Constans.Constans;\r\nimport com.ak.doctruyenchu.R;\r\nimport com.ak.doctruyenchu.models.TRUYEN;\r\nimport com.ak.doctruyenchu.ui.DanhSachTruyen.DanhSachTruyen;\r\nimport com.ak.doctruyenchu.ui.ThongTinTruyen.ThongTinTruyen;\r\nimport com.ak.doctruyenchu.ui.moduleView.adapter.HolderOnClick;\r\nimport com.ak.doctruyenchu.ui.moduleView.adapter.ModuleView1Adapter;\r\nimport com.squareup.picasso.Picasso;\r\n\r\nimport java.util.ArrayList;\r\n\r\n/**\r\n * A simple {@link Fragment} subclass.\r\n * Use the {@link ModuleView1#newInstance} factory method to\r\n * create an instance of this fragment.\r\n */\r\npublic class ModuleView1 extends Fragment {\r\n\r\n    // TODO: Rename parameter arguments, choose names that match\r\n    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER\r\n    private static final String ARG_PARAM1 = \"param1\";\r\n    private static final String ARG_PARAM2 = \"param2\";\r\n\r\n    // TODO: Rename and change types of parameters\r\n    private String mParam1;\r\n    private String mParam2;\r\n\r\n    private View view;\r\n    private ArrayList<TRUYEN> truyenArrayList;\r\n    private Module module;\r\n    private RecyclerView recyclerView;\r\n    private ImageView imageView;\r\n    private TextView the_loai, ten_truyen, mo_ta,tv_so_luot_rate, tv_title_module_view1;\r\n    private CardView doc_truyen;\r\n    private ConstraintLayout constraintLayout;\r\n    private RatingBar ratingBar;\r\n    private ModuleView1Adapter adapter;\r\n\r\n    public ModuleView1() {\r\n        // Required empty public constructor\r\n\r\n    }\r\n    public void setModule(Module module, ArrayList<TRUYEN> truyenArrayList){\r\n        this.module=module;\r\n        this.truyenArrayList=truyenArrayList;\r\n    }\r\n\r\n    public void setModule(ArrayList<TRUYEN> truyenArrayList){\r\n        this.truyenArrayList=truyenArrayList;\r\n    }\r\n\r\n    /**\r\n     * Use this factory method to create a new instance of\r\n     * this fragment using the provided parameters.\r\n     *\r\n     * @param param1 Parameter 1.\r\n     * @param param2 Parameter 2.\r\n     * @return A new instance of fragment ModuleView1.\r\n     */\r\n    // TODO: Rename and change types and number of parameters\r\n    public static ModuleView1 newInstance(String param1, String param2) {\r\n        ModuleView1 fragment = new ModuleView1();\r\n        Bundle args = new Bundle();\r\n        args.putString(ARG_PARAM1, param1);\r\n        args.putString(ARG_PARAM2, param2);\r\n        fragment.setArguments(args);\r\n        return fragment;\r\n    }\r\n\r\n    @Override\r\n    public void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        if (getArguments() != null) {\r\n            mParam1 = getArguments().getString(ARG_PARAM1);\r\n            mParam2 = getArguments().getString(ARG_PARAM2);\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\r\n                             Bundle savedInstanceState) {\r\n        // Inflate the layout for this fragment\r\n        view = inflater.inflate(R.layout.module_view1, container, false);\r\n        unitUI();\r\n        run(truyenArrayList);\r\n        return view;\r\n    }\r\n\r\n    private void run(ArrayList<TRUYEN> truyenArrayList){\r\n        setView(truyenArrayList.get(0));\r\n        adapter = new ModuleView1Adapter(truyenArrayList);\r\n        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());\r\n        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);\r\n        recyclerView.setLayoutManager(linearLayoutManager);\r\n        recyclerView.setAdapter(adapter);\r\n\r\n        adapter.onClick(new HolderOnClick() {\r\n            @Override\r\n            public void onClick(TRUYEN truyen) {\r\n                setView(truyen);\r\n            }\r\n        });\r\n        doc_truyen.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(getContext(), ThongTinTruyen.class);\r\n                intent.putExtra(\"ten_truyen\",ten_truyen.getText());\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n        constraintLayout.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                Intent intent = new Intent(getContext(), DanhSachTruyen.class);\r\n                intent.putExtra(Constans.KEY,Constans.TRUYEN_MOI_NHAT);\r\n                startActivity(intent);\r\n            }\r\n        });\r\n\r\n    }\r\n\r\n    private void setView(TRUYEN truyen){\r\n        Picasso.get()\r\n                .load(truyen.getUrl_anh_nen_truyen())\r\n                .fit()\r\n                .into(imageView);\r\n        ten_truyen.setText(truyen.getTen_truyen());\r\n        mo_ta.setText(truyen.getMo_ta());\r\n        tv_so_luot_rate.setText(\"(\"+truyen.getSo_luot_rate()+\" lượt)\");\r\n        ratingBar.setRating(truyen.getRate());\r\n        tv_title_module_view1.setText(module.moduleName);\r\n    }\r\n\r\n    private void unitUI(){\r\n        ratingBar = view.findViewById(R.id.ratebar_module_view1);\r\n        tv_so_luot_rate = view.findViewById(R.id.tv_so_luot_rate_module_view1);\r\n        doc_truyen = view.findViewById(R.id.bt_doc_truyen_module_view1);\r\n        imageView = view.findViewById(R.id.image_module_view1);\r\n        recyclerView = view.findViewById(R.id.rcv_module_view1);\r\n        the_loai = view.findViewById(R.id.tv_the_loai_module_view1);\r\n        mo_ta = view.findViewById(R.id.tv_mo_ta_module_view1);\r\n        ten_truyen = view.findViewById(R.id.tv_ten_truyen_module_view1);\r\n        constraintLayout = view.findViewById(R.id.title_module_view1);\r\n        tv_title_module_view1 = view.findViewById(R.id.tv_title_module_view1);\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/ak/doctruyenchu/ui/moduleView/ModuleView1.java b/app/src/main/java/com/ak/doctruyenchu/ui/moduleView/ModuleView1.java
+--- a/app/src/main/java/com/ak/doctruyenchu/ui/moduleView/ModuleView1.java	(revision 4e732abeb089e9391817582535edbdb70a4f36bd)
++++ b/app/src/main/java/com/ak/doctruyenchu/ui/moduleView/ModuleView1.java	(date 1649859863290)
+@@ -21,7 +21,7 @@
+ import com.ak.doctruyenchu.models.TRUYEN;
+ import com.ak.doctruyenchu.ui.DanhSachTruyen.DanhSachTruyen;
+ import com.ak.doctruyenchu.ui.ThongTinTruyen.ThongTinTruyen;
+-import com.ak.doctruyenchu.ui.moduleView.adapter.HolderOnClick;
++import com.ak.doctruyenchu.ui.INTERFACE.HolderOnClick;
+ import com.ak.doctruyenchu.ui.moduleView.adapter.ModuleView1Adapter;
+ import com.squareup.picasso.Picasso;
+ 
+Index: app/src/main/java/com/ak/doctruyenchu/ui/moduleView/adapter/ModuleView2Adapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.ak.doctruyenchu.ui.moduleView.adapter;\r\n\r\nimport android.content.Context;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.ImageButton;\r\nimport android.widget.ImageView;\r\nimport android.widget.RatingBar;\r\nimport android.widget.TextView;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport com.ak.doctruyenchu.R;\r\nimport com.ak.doctruyenchu.models.TRUYEN;\r\nimport com.squareup.picasso.Picasso;\r\n\r\nimport java.util.ArrayList;\r\n\r\npublic class ModuleView2Adapter extends RecyclerView.Adapter {\r\n\r\n    private HolderOnClick holderOnClick;\r\n    private OptionsOnClick optionsOnClick;\r\n    private ArrayList<TRUYEN> truyenArrayList;\r\n    private int textColor;\r\n    private Context context;\r\n    private boolean orientationVertical;\r\n    private boolean enableOptionButton;\r\n\r\n    public ModuleView2Adapter(ArrayList<TRUYEN> truyenArrayList) {\r\n        this.truyenArrayList=truyenArrayList;\r\n        this.textColor = 0;\r\n        this.orientationVertical = false;\r\n        this.orientationVertical = false;\r\n    }\r\n\r\n    public void EnableOptionButton(boolean enableOptionButton){\r\n        this.enableOptionButton = enableOptionButton;\r\n    }\r\n\r\n    public void setTextColor(int textColor, Context context) {\r\n        this.textColor = textColor;\r\n        this.context = context;\r\n    }\r\n\r\n    public void setOrientationVertical(boolean orientationVertical) {\r\n        this.orientationVertical = orientationVertical;\r\n    }\r\n\r\n    public void deleteItem(int position) {\r\n        this.truyenArrayList.remove(position);\r\n    }\r\n\r\n    @NonNull\r\n    @Override\r\n    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {\r\n        if (orientationVertical){\r\n            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_module_view2_vertical,parent,false);\r\n            return new  ModuleView2Adapter.ItemHolderVertical(view);\r\n        }\r\n        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_module_view2,parent,false);\r\n        return new  ModuleView2Adapter.ItemHolder(view);\r\n    }\r\n\r\n    @Override\r\n    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {\r\n        if (orientationVertical)\r\n            ((ModuleView2Adapter.ItemHolderVertical) holder).blind(truyenArrayList.get(position));\r\n        else\r\n            ((ModuleView2Adapter.ItemHolder) holder).blind(truyenArrayList.get(position));\r\n    }\r\n\r\n    @Override\r\n    public int getItemCount() {\r\n        return truyenArrayList.size();\r\n    }\r\n\r\n    public void onClick(HolderOnClick mdv2HolderOnClick){\r\n        this.holderOnClick=mdv2HolderOnClick;\r\n    }\r\n\r\n    public void setOptionsOnClick(OptionsOnClick optionsOnClick){this.optionsOnClick = optionsOnClick;}\r\n\r\n    private class ItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener {\r\n\r\n        private ImageView imageView;\r\n        private TextView textView;\r\n        public ItemHolder(@NonNull View itemView) {\r\n            super(itemView);\r\n            imageView = itemView.findViewById(R.id.item_image_mdv2);\r\n            textView = itemView.findViewById(R.id.item_tv_mdv2);\r\n            itemView.setOnClickListener(this::onClick);\r\n        }\r\n\r\n        public void blind(TRUYEN truyen){\r\n            Picasso.get()\r\n                    .load(truyen.getUrl_anh_nen_truyen())\r\n                    .fit()\r\n                    .into(imageView);\r\n            if (textColor!=0)\r\n                textView.setTextColor(context.getColor(textColor));\r\n            textView.setText(truyen.getTen_truyen());\r\n        }\r\n\r\n        @Override\r\n        public void onClick(View v) {\r\n            holderOnClick.onClick(truyenArrayList.get(getAdapterPosition()));\r\n        }\r\n    }\r\n\r\n    private class ItemHolderVertical extends RecyclerView.ViewHolder implements View.OnClickListener {\r\n\r\n        private ImageView imageView;\r\n        private TextView textView, tv_tac_gia, item_tv_chap_moi_mdv2;\r\n        private RatingBar ratingBar;\r\n        private ImageButton optionBtton;\r\n        public ItemHolderVertical(@NonNull View itemView) {\r\n            super(itemView);\r\n            imageView = itemView.findViewById(R.id.item_image_mdv2);\r\n            ratingBar = itemView.findViewById(R.id.ratebar_mdv2);\r\n            textView = itemView.findViewById(R.id.item_tv_mdv2);\r\n            tv_tac_gia = itemView.findViewById(R.id.item_tv_tac_gia_mdv2);\r\n            item_tv_chap_moi_mdv2 = itemView.findViewById(R.id.item_tv_chap_moi_mdv2);\r\n            optionBtton = itemView.findViewById(R.id.options_mdv2);\r\n            itemView.setOnClickListener(this::onClick);\r\n        }\r\n\r\n        public void blind(TRUYEN truyen){\r\n            Picasso.get()\r\n                    .load(truyen.getUrl_anh_nen_truyen())\r\n                    .fit()\r\n                    .into(imageView);\r\n            if (textColor!=0){\r\n                int color = context.getColor(textColor);\r\n                textView.setTextColor(color);\r\n                tv_tac_gia.setTextColor(color);\r\n                item_tv_chap_moi_mdv2.setTextColor(color);\r\n            }\r\n            ratingBar.setRating(truyen.getRate());\r\n            tv_tac_gia.setText(truyen.getTac_gia());\r\n            textView.setText(truyen.getTen_truyen());\r\n            item_tv_chap_moi_mdv2.setText(truyen.getChap_moi_nhat());\r\n            //\r\n            if (enableOptionButton){\r\n                optionBtton.setVisibility(View.VISIBLE);\r\n            } else  optionBtton.setVisibility(View.GONE);\r\n\r\n            optionBtton.setOnClickListener(new View.OnClickListener() {\r\n                @Override\r\n                public void onClick(View v) {\r\n                    optionsOnClick.onClick(truyen,truyenArrayList.indexOf(truyen));\r\n                }\r\n            });\r\n        }\r\n\r\n        @Override\r\n        public void onClick(View v) {\r\n            holderOnClick.onClick(truyenArrayList.get(getAdapterPosition()));\r\n        }\r\n    }\r\n\r\n//    public interface Mdv2HolderOnClick{\r\n//        public void mdv2HolderOnClick(TRUYEN truyen);\r\n//    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/ak/doctruyenchu/ui/moduleView/adapter/ModuleView2Adapter.java b/app/src/main/java/com/ak/doctruyenchu/ui/moduleView/adapter/ModuleView2Adapter.java
+--- a/app/src/main/java/com/ak/doctruyenchu/ui/moduleView/adapter/ModuleView2Adapter.java	(revision 4e732abeb089e9391817582535edbdb70a4f36bd)
++++ b/app/src/main/java/com/ak/doctruyenchu/ui/moduleView/adapter/ModuleView2Adapter.java	(date 1649859863258)
+@@ -14,6 +14,7 @@
+ 
+ import com.ak.doctruyenchu.R;
+ import com.ak.doctruyenchu.models.TRUYEN;
++import com.ak.doctruyenchu.ui.INTERFACE.HolderOnClick;
+ import com.squareup.picasso.Picasso;
+ 
+ import java.util.ArrayList;
+Index: app/src/main/java/com/ak/doctruyenchu/ui/ThongTinTruyen/BinhLuanVaDanhGia.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.ak.doctruyenchu.ui.ThongTinTruyen;\r\n\r\nimport android.app.Dialog;\r\nimport android.os.Bundle;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.cardview.widget.CardView;\r\nimport androidx.fragment.app.DialogFragment;\r\nimport androidx.fragment.app.Fragment;\r\nimport androidx.recyclerview.widget.LinearLayoutManager;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport android.os.CountDownTimer;\r\nimport android.os.Handler;\r\nimport android.util.Log;\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.EditText;\r\nimport android.widget.ImageButton;\r\nimport android.widget.RatingBar;\r\nimport android.widget.TextView;\r\n\r\nimport com.ak.doctruyenchu.Constans.Comco;\r\nimport com.ak.doctruyenchu.Constans.Constans;\r\nimport com.ak.doctruyenchu.R;\r\nimport com.ak.doctruyenchu.models.BinhLuan;\r\nimport com.ak.doctruyenchu.models.DanhGia;\r\nimport com.ak.doctruyenchu.models.USER;\r\nimport com.ak.doctruyenchu.ui.CaNhan.ChuaDangNhap;\r\nimport com.ak.doctruyenchu.ui.CaNhan.DaDangNhap;\r\nimport com.google.android.gms.tasks.OnCompleteListener;\r\nimport com.google.android.gms.tasks.OnSuccessListener;\r\nimport com.google.android.gms.tasks.Task;\r\nimport com.google.android.material.textfield.TextInputEditText;\r\nimport com.google.firebase.database.DataSnapshot;\r\nimport com.google.firebase.database.DatabaseError;\r\nimport com.google.firebase.database.ValueEventListener;\r\n\r\nimport java.util.ArrayList;\r\n\r\n/**\r\n * A simple {@link Fragment} subclass.\r\n * Use the {@link BinhLuanVaDanhGia#newInstance} factory method to\r\n * create an instance of this fragment.\r\n */\r\npublic class BinhLuanVaDanhGia extends Fragment {\r\n\r\n    // TODO: Rename parameter arguments, choose names that match\r\n    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER\r\n    private static final String ARG_PARAM1 = \"param1\";\r\n    private static final String ARG_PARAM2 = \"param2\";\r\n\r\n    // TODO: Rename and change types of parameters\r\n    private String mParam1;\r\n    private String mParam2;\r\n\r\n    private View view;\r\n    private EditText editText;\r\n    private TextView button, sentRate;\r\n    private String ten_truyen;\r\n    private RecyclerView recyclerView;\r\n    private BinhLuanAdapter adapter;\r\n    private ArrayList<BinhLuan> binhLuanArrayList;\r\n    private CountDownTimer countDownTimer;\r\n    private RatingBar ratingBar;\r\n    private boolean rated;\r\n\r\n    public BinhLuanVaDanhGia() {\r\n        // Required empty public constructor\r\n        rated = false;\r\n    }\r\n\r\n    /**\r\n     * Use this factory method to create a new instance of\r\n     * this fragment using the provided parameters.\r\n     *\r\n     * @param param1 Parameter 1.\r\n     * @param param2 Parameter 2.\r\n     * @return A new instance of fragment BinhLuanVaDanhGia.\r\n     */\r\n    // TODO: Rename and change types and number of parameters\r\n    public static BinhLuanVaDanhGia newInstance(String param1, String param2) {\r\n        BinhLuanVaDanhGia fragment = new BinhLuanVaDanhGia();\r\n        Bundle args = new Bundle();\r\n        args.putString(ARG_PARAM1, param1);\r\n        args.putString(ARG_PARAM2, param2);\r\n        fragment.setArguments(args);\r\n        return fragment;\r\n    }\r\n\r\n    @Override\r\n    public void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        if (getArguments() != null) {\r\n            mParam1 = getArguments().getString(ARG_PARAM1);\r\n            mParam2 = getArguments().getString(ARG_PARAM2);\r\n        }\r\n        ten_truyen = getArguments().getString(\"ten_truyen\");\r\n    }\r\n\r\n    private void run(){\r\n        binhLuanArrayList = new ArrayList<>();\r\n        Constans.DATABASE.getReference(Constans.BINH_LUAN).child(ten_truyen)\r\n                .addValueEventListener(new ValueEventListener() {\r\n                    @Override\r\n                    public void onDataChange(@NonNull DataSnapshot snapshot) {\r\n                        binhLuanArrayList.clear();\r\n                        for (DataSnapshot data : snapshot.getChildren()){\r\n                            BinhLuan binhLuan = data.getValue(BinhLuan.class);\r\n                            binhLuanArrayList.add(0,binhLuan);\r\n                        }\r\n\r\n                        adapter = new BinhLuanAdapter(binhLuanArrayList);\r\n                        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));\r\n                        recyclerView.setAdapter(adapter);\r\n\r\n                    }\r\n                    @Override\r\n                    public void onCancelled(@NonNull DatabaseError error) {\r\n\r\n                    }\r\n                });\r\n\r\n    }\r\n\r\n\r\n\r\n    @Override\r\n    public View onCreateView(LayoutInflater inflater, ViewGroup container,\r\n                             Bundle savedInstanceState) {\r\n        // Inflate the layout for this fragment\r\n        view = inflater.inflate(R.layout.binh_luan_va_danh_gia, container, false);\r\n        recyclerView = view.findViewById(R.id.rcv_comment);\r\n        run();\r\n\r\n        return view;\r\n    }\r\n\r\n    @Override\r\n    public void onResume() {\r\n        super.onResume();\r\n        if (Constans.AUTH.getCurrentUser()==null){\r\n            setView(new ChuaDangNhap(),\"CHUA_DANG_NHAP\");\r\n        }else {\r\n            if (getParentFragmentManager().findFragmentByTag(\"CHUA_DANG_NHAP\")==null){\r\n                Bundle bundle = new Bundle();\r\n                bundle.putString(\"ten_truyen\",ten_truyen);\r\n                Fragment_tool_comment_rate frg = new Fragment_tool_comment_rate();\r\n                frg.setArguments(bundle);\r\n                setView(frg,\"FRG_TOOL_COMT\");\r\n            }\r\n        }\r\n    }\r\n\r\n    private void setView(Fragment fragment,String tag){\r\n        getChildFragmentManager()\r\n                .beginTransaction()\r\n                .replace(R.id.com_rate_tool,fragment,tag)\r\n                .commit();\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/ak/doctruyenchu/ui/ThongTinTruyen/BinhLuanVaDanhGia.java b/app/src/main/java/com/ak/doctruyenchu/ui/ThongTinTruyen/BinhLuanVaDanhGia.java
+--- a/app/src/main/java/com/ak/doctruyenchu/ui/ThongTinTruyen/BinhLuanVaDanhGia.java	(revision 4e732abeb089e9391817582535edbdb70a4f36bd)
++++ b/app/src/main/java/com/ak/doctruyenchu/ui/ThongTinTruyen/BinhLuanVaDanhGia.java	(date 1649855855318)
+@@ -1,38 +1,25 @@
+ package com.ak.doctruyenchu.ui.ThongTinTruyen;
+ 
+-import android.app.Dialog;
+ import android.os.Bundle;
+ 
+ import androidx.annotation.NonNull;
+-import androidx.cardview.widget.CardView;
+-import androidx.fragment.app.DialogFragment;
+ import androidx.fragment.app.Fragment;
+ import androidx.recyclerview.widget.LinearLayoutManager;
+ import androidx.recyclerview.widget.RecyclerView;
+ 
+ import android.os.CountDownTimer;
+-import android.os.Handler;
+-import android.util.Log;
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
+ import android.widget.EditText;
+-import android.widget.ImageButton;
+ import android.widget.RatingBar;
+ import android.widget.TextView;
+ 
+-import com.ak.doctruyenchu.Constans.Comco;
+ import com.ak.doctruyenchu.Constans.Constans;
+ import com.ak.doctruyenchu.R;
+ import com.ak.doctruyenchu.models.BinhLuan;
+-import com.ak.doctruyenchu.models.DanhGia;
+-import com.ak.doctruyenchu.models.USER;
+ import com.ak.doctruyenchu.ui.CaNhan.ChuaDangNhap;
+-import com.ak.doctruyenchu.ui.CaNhan.DaDangNhap;
+-import com.google.android.gms.tasks.OnCompleteListener;
+-import com.google.android.gms.tasks.OnSuccessListener;
+-import com.google.android.gms.tasks.Task;
+-import com.google.android.material.textfield.TextInputEditText;
++import com.ak.doctruyenchu.ui.ThongTinTruyen.adapter.BinhLuanAdapter;
+ import com.google.firebase.database.DataSnapshot;
+ import com.google.firebase.database.DatabaseError;
+ import com.google.firebase.database.ValueEventListener;
+Index: app/src/main/java/com/ak/doctruyenchu/ui/ThongTinTruyen/BinhLuanAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/ak/doctruyenchu/ui/ThongTinTruyen/BinhLuanAdapter.java b/app/src/main/java/com/ak/doctruyenchu/ui/ThongTinTruyen/adapter/BinhLuanAdapter.java
+rename from app/src/main/java/com/ak/doctruyenchu/ui/ThongTinTruyen/BinhLuanAdapter.java
+rename to app/src/main/java/com/ak/doctruyenchu/ui/ThongTinTruyen/adapter/BinhLuanAdapter.java
+--- a/app/src/main/java/com/ak/doctruyenchu/ui/ThongTinTruyen/BinhLuanAdapter.java	(revision 4e732abeb089e9391817582535edbdb70a4f36bd)
++++ b/app/src/main/java/com/ak/doctruyenchu/ui/ThongTinTruyen/adapter/BinhLuanAdapter.java	(date 1649855877920)
+@@ -1,4 +1,4 @@
+-package com.ak.doctruyenchu.ui.ThongTinTruyen;
++package com.ak.doctruyenchu.ui.ThongTinTruyen.adapter;
+ 
+ import android.content.Context;
+ import android.view.LayoutInflater;
+@@ -78,7 +78,7 @@
+ 
+             if (Constans.AUTH.getCurrentUser()!=null){
+                 if ( binhLuan.getUid().equals(Constans.AUTH.getCurrentUser().getUid())){
+-                    cardView.setCardBackgroundColor(-16524603);
++                    cardView.setCardBackgroundColor(2131034145);
+                     content.setTextColor(-1);
+                     name.setText("Bạn");
+                 }
+Index: app/src/main/res/layout/item_danh_sach_truyen.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"150sp\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    android:padding=\"10sp\"\r\n    android:orientation=\"horizontal\"\r\n    android:weightSum=\"5\">\r\n\r\n    <androidx.cardview.widget.CardView\r\n        android:layout_weight=\"4\"\r\n        android:layout_width=\"fill_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        app:cardCornerRadius=\"20sp\">\r\n        <ImageView\r\n            android:id=\"@+id/item_dst_list\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"match_parent\"\r\n            android:scaleType=\"centerCrop\"/>\r\n    </androidx.cardview.widget.CardView>\r\n    <LinearLayout\r\n        android:layout_weight=\"1\"\r\n        android:layout_width=\"fill_parent\"\r\n        android:layout_height=\"match_parent\"\r\n        android:padding=\"5sp\"\r\n        android:orientation=\"vertical\">\r\n        <TextView\r\n            android:id=\"@+id/item_ten_truyen_dst\"\r\n            android:text=\"Ten truyen\"\r\n            android:textSize=\"20sp\"\r\n            android:textStyle=\"bold\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:lines=\"2\"\r\n            android:gravity=\"center_vertical\"/>\r\n        <TextView\r\n            android:id=\"@+id/item_tac_gia_dst\"\r\n            android:text=\"tac gia\"\r\n            android:textSize=\"15sp\"\r\n            android:layout_width=\"match_parent\"\r\n            android:layout_height=\"wrap_content\"\r\n            android:singleLine=\"true\"/>\r\n    </LinearLayout>\r\n\r\n\r\n</LinearLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/layout/item_danh_sach_truyen.xml b/app/src/main/res/layout/item_danh_sach_truyen.xml
+--- a/app/src/main/res/layout/item_danh_sach_truyen.xml	(revision 4e732abeb089e9391817582535edbdb70a4f36bd)
++++ b/app/src/main/res/layout/item_danh_sach_truyen.xml	(date 1649857920999)
+@@ -1,46 +1,80 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+-    android:layout_height="150sp"
++    android:layout_height="wrap_content"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+-    android:padding="10sp"
+-    android:orientation="horizontal"
+-    android:weightSum="5">
+-
+-    <androidx.cardview.widget.CardView
+-        android:layout_weight="4"
+-        android:layout_width="fill_parent"
+-        android:layout_height="match_parent"
+-        app:cardCornerRadius="20sp">
+-        <ImageView
+-            android:id="@+id/item_dst_list"
+-            android:layout_width="match_parent"
+-            android:layout_height="match_parent"
+-            android:scaleType="centerCrop"/>
+-    </androidx.cardview.widget.CardView>
+-    <LinearLayout
+-        android:layout_weight="1"
+-        android:layout_width="fill_parent"
+-        android:layout_height="match_parent"
+-        android:padding="5sp"
+-        android:orientation="vertical">
+-        <TextView
+-            android:id="@+id/item_ten_truyen_dst"
+-            android:text="Ten truyen"
+-            android:textSize="20sp"
+-            android:textStyle="bold"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:lines="2"
+-            android:gravity="center_vertical"/>
+-        <TextView
+-            android:id="@+id/item_tac_gia_dst"
+-            android:text="tac gia"
+-            android:textSize="15sp"
+-            android:layout_width="match_parent"
+-            android:layout_height="wrap_content"
+-            android:singleLine="true"/>
+-    </LinearLayout>
+-
++    android:orientation="horizontal">
++    <androidx.cardview.widget.CardView
++        android:layout_margin="5sp"
++        app:cardCornerRadius="20sp"
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content">
++        <LinearLayout
++            android:layout_margin="10sp"
++            android:orientation="horizontal"
++            android:layout_width="match_parent"
++            android:layout_height="match_parent">
++            <androidx.cardview.widget.CardView
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                app:cardCornerRadius="20sp">
++                <ImageView
++                    android:id="@+id/item_dst_list"
++                    android:layout_width="90sp"
++                    android:layout_height="135sp"
++                    android:scaleType="centerCrop"/>
++            </androidx.cardview.widget.CardView>
++            <LinearLayout
++                android:layout_width="match_parent"
++                android:layout_height="match_parent"
++                android:padding="5sp"
++                android:orientation="vertical">
++                <TextView
++                    android:id="@+id/item_ten_truyen_dst"
++                    android:text="Ten truyen"
++                    android:textSize="20sp"
++                    android:textStyle="bold"
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:lines="2"
++                    android:gravity="center_vertical"/>
++                <TextView
++                    android:id="@+id/item_tac_gia_dst"
++                    android:text="tac gia"
++                    android:textSize="15sp"
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:singleLine="true"/>
++                <TextView
++                    android:id="@+id/item_view_dst"
++                    android:text="view"
++                    android:gravity="center_vertical"
++                    android:drawableLeft="@drawable/ic_baseline_remove_red_eye_24"
++                    android:textSize="12sp"
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:singleLine="true"/>
++                <LinearLayout
++                    android:gravity="center_vertical"
++                    android:orientation="horizontal"
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content">
++                    <RatingBar
++                        android:id="@+id/rate_dst"
++                        android:numStars="5"
++                        style="@style/Widget.AppCompat.RatingBar.Small"
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"/>
++                    <TextView
++                        android:id="@+id/luot_rate_dst"
++                        android:text="@string/loading"
++                        android:textSize="12sp"
++                        android:layout_marginStart="5sp"
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"/>
++                </LinearLayout>
++            </LinearLayout>
++        </LinearLayout>
++    </androidx.cardview.widget.CardView>
+ 
+ </LinearLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/ak/doctruyenchu/ui/DanhSachTruyen/adapter/DanhSachTruyenAdapter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.ak.doctruyenchu.ui.DanhSachTruyen.adapter;\r\n\r\nimport android.view.LayoutInflater;\r\nimport android.view.View;\r\nimport android.view.ViewGroup;\r\nimport android.widget.ImageView;\r\nimport android.widget.TextView;\r\n\r\nimport androidx.annotation.NonNull;\r\nimport androidx.recyclerview.widget.RecyclerView;\r\n\r\nimport com.ak.doctruyenchu.R;\r\nimport com.ak.doctruyenchu.models.TRUYEN;\r\nimport com.squareup.picasso.Picasso;\r\n\r\nimport java.util.ArrayList;\r\n\r\npublic class DanhSachTruyenAdapter extends  RecyclerView.Adapter{\r\n    private ArrayList<TRUYEN> truyenArrayList;\r\n    private DanhSachTruyenAdapter.HolderOnClick holderOnClick;\r\n    //test\r\n\r\n\r\n    public DanhSachTruyenAdapter() {\r\n    }\r\n\r\n    public DanhSachTruyenAdapter(ArrayList<TRUYEN> truyenArrayList) {\r\n        this.truyenArrayList = truyenArrayList;\r\n    }\r\n\r\n    @NonNull\r\n    @Override\r\n    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {\r\n        View view = LayoutInflater.from(parent.getContext())\r\n                .inflate(R.layout.item_danh_sach_truyen,parent,false);\r\n        return new DanhSachTruyenAdapter.ItemHolder(view);\r\n    }\r\n\r\n    @Override\r\n    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {\r\n        ((DanhSachTruyenAdapter.ItemHolder) holder).bind(truyenArrayList.get(position));\r\n    }\r\n\r\n    @Override\r\n    public int getItemCount() {\r\n        return truyenArrayList.size();\r\n    }\r\n\r\n    public void onClick(DanhSachTruyenAdapter.HolderOnClick holderOnClick){\r\n        this.holderOnClick=holderOnClick;\r\n    }\r\n\r\n    private class ItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener{\r\n        private ImageView imageView;\r\n        private TextView ten_truyen, tac_gia;\r\n        public ItemHolder(@NonNull View itemView) {\r\n            super(itemView);\r\n            imageView = itemView.findViewById(R.id.item_dst_list);\r\n            ten_truyen = itemView.findViewById(R.id.item_ten_truyen_dst);\r\n            tac_gia = itemView.findViewById(R.id.item_tac_gia_dst);\r\n            itemView.setOnClickListener(this::onClick);\r\n        }\r\n\r\n        public void bind(TRUYEN truyen){\r\n            ten_truyen.setText(truyen.getTen_truyen());\r\n            tac_gia.setText(truyen.getTac_gia());\r\n            Picasso.get()\r\n                    .load(truyen.getUrl_anh_nen_truyen())\r\n                    .into(imageView);\r\n        }\r\n\r\n        @Override\r\n        public void onClick(View v) {\r\n            holderOnClick.holderOnClick(truyenArrayList.get(getAdapterPosition()));\r\n        }\r\n    }\r\n\r\n    public interface HolderOnClick{\r\n        public void holderOnClick(TRUYEN truyen);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/ak/doctruyenchu/ui/DanhSachTruyen/adapter/DanhSachTruyenAdapter.java b/app/src/main/java/com/ak/doctruyenchu/ui/DanhSachTruyen/adapter/DanhSachTruyenAdapter.java
+--- a/app/src/main/java/com/ak/doctruyenchu/ui/DanhSachTruyen/adapter/DanhSachTruyenAdapter.java	(revision 4e732abeb089e9391817582535edbdb70a4f36bd)
++++ b/app/src/main/java/com/ak/doctruyenchu/ui/DanhSachTruyen/adapter/DanhSachTruyenAdapter.java	(date 1649857848576)
+@@ -4,6 +4,7 @@
+ import android.view.View;
+ import android.view.ViewGroup;
+ import android.widget.ImageView;
++import android.widget.RatingBar;
+ import android.widget.TextView;
+ 
+ import androidx.annotation.NonNull;
+@@ -52,18 +53,25 @@
+ 
+     private class ItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+         private ImageView imageView;
+-        private TextView ten_truyen, tac_gia;
++        private TextView ten_truyen, tac_gia,view, luot_danh_gia;
++        private RatingBar ratingBar;
+         public ItemHolder(@NonNull View itemView) {
+             super(itemView);
+             imageView = itemView.findViewById(R.id.item_dst_list);
+             ten_truyen = itemView.findViewById(R.id.item_ten_truyen_dst);
+             tac_gia = itemView.findViewById(R.id.item_tac_gia_dst);
++            view = itemView.findViewById(R.id.item_view_dst);
++            luot_danh_gia = itemView.findViewById(R.id.luot_rate_dst);
++            ratingBar = itemView.findViewById(R.id.rate_dst);
+             itemView.setOnClickListener(this::onClick);
+         }
+ 
+         public void bind(TRUYEN truyen){
+             ten_truyen.setText(truyen.getTen_truyen());
+             tac_gia.setText(truyen.getTac_gia());
++            view.setText(" "+truyen.getSo_view()+" lượt xem");
++            luot_danh_gia.setText("("+truyen.getSo_luot_rate()+" lượt)");
++            ratingBar.setRating(truyen.getRate());
+             Picasso.get()
+                     .load(truyen.getUrl_anh_nen_truyen())
+                     .into(imageView);
+Index: app/src/main/res/values/dimens.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <!-- Default screen margins, per the Android Design guidelines. -->\r\n    <dimen name=\"activity_horizontal_margin\">16dp</dimen>\r\n    <dimen name=\"activity_vertical_margin\">16dp</dimen>\r\n    <dimen name=\"text_margin\">16dp</dimen>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/dimens.xml b/app/src/main/res/values/dimens.xml
+--- a/app/src/main/res/values/dimens.xml	(revision 4e732abeb089e9391817582535edbdb70a4f36bd)
++++ b/app/src/main/res/values/dimens.xml	(date 1649864960654)
+@@ -3,4 +3,7 @@
+     <dimen name="activity_horizontal_margin">16dp</dimen>
+     <dimen name="activity_vertical_margin">16dp</dimen>
+     <dimen name="text_margin">16dp</dimen>
++    <dimen name="appbar_padding">16dp</dimen>
++    <dimen name="fab_margin">16dp</dimen>
++    <dimen name="appbar_padding_top">8dp</dimen>
+ </resources>
+\ No newline at end of file
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <string name=\"app_name\">Đọc truyện chữ</string>\r\n    <string name=\"title_home\">Trang chủ</string>\r\n    <string name=\"title_dashboard\">Cá nhân</string>\r\n    <string name=\"title_notifications\">Notifications</string>\r\n    <string name=\"title_tu_truyen\">Tủ Truyện</string>\r\n    <!-- TODO: Remove or change this placeholder text -->\r\n    <string name=\"hello_blank_fragment\">Hello blank fragment</string>\r\n    <string name=\"title_activity_doc_truyen\">DocTruyen</string>\r\n    <string name=\"is_blank\">Không được để trống</string>\r\n    <string name=\"not_correct_format\">Không đúng định dạng email</string>\r\n    <string name=\"string_lenght_is_less_than_8\">Tối thiểu 8 ký tự</string>\r\n    <string name=\"infor_error\">Thông tin nhập lỗi</string>\r\n    <string name=\"faile_to_login\">Đăng nhập thất bại</string>\r\n    <string name=\"succes_to_login\">Đăng nhập thành công</string>\r\n    <string name=\"not_login\">Chưa đăng nhập</string>\r\n    <string name=\"signup_success\">Đăng ký thành công</string>\r\n    <string name=\"signup_failure\">Đăng ký thất bại</string>\r\n    <string name=\"edit_information\">Chỉnh sửa thông tin</string>\r\n    <string name=\"signout\">Đăng xuất</string>\r\n    <string name=\"signin\">Đăng nhập</string>\r\n    <string name=\"signup\">Đăng ký</string>\r\n    <string name=\"user_name\">Tên người dùng</string>\r\n    <string name=\"emai\">Email</string>\r\n    <string name=\"save\">Lưu</string>\r\n    <string name=\"cancel\">Hủy</string>\r\n    <string name=\"select_image\">Chọn hình ảnh</string>\r\n    <string name=\"update_success\">Cập nhật thành công</string>\r\n    <string name=\"update_failure\">Cập nhật thất bại</string>\r\n    <string name=\"updating\">Đang cập nhật . . .</string>\r\n    <string name=\"exit\">Thoát</string>\r\n    <string name=\"upload_truyen\">Đăng truyện</string>\r\n    <string name=\"read\">Đọc</string>\r\n    <string name=\"delete\">Xóa</string>\r\n    <string name=\"sent_a_rate\">Gửi đánh giá</string>\r\n    <string name=\"sent_a_comment\">Gửi bình luận</string>\r\n    <string name=\"loading\">Đang tải . . .</string>\r\n    <string name=\"truyen_de_cu\">Truyện đề cử</string>\r\n    <string name=\"truyen_moi_nhat\">Truyện mới nhất</string>\r\n    <string name=\"truyen_cung_tac_gia\">Truyện cùng tác giả</string>\r\n    <string name=\"lich_su_doc_truyen\">Lịch sử đọc truyện</string>\r\n    <string name=\"truyen_cat_giu\">Truyện cất giữ</string>\r\n    <string name=\"truyen_top_rate\">Truyện top rate</string>\r\n    <string name=\"truyen_top_view\">Truyện top view</string>\r\n    <string name=\"content\">Nội dung</string>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/res/values/strings.xml b/app/src/main/res/values/strings.xml
+--- a/app/src/main/res/values/strings.xml	(revision 4e732abeb089e9391817582535edbdb70a4f36bd)
++++ b/app/src/main/res/values/strings.xml	(date 1649864960643)
+@@ -43,4 +43,7 @@
+     <string name="truyen_top_rate">Truyện top rate</string>
+     <string name="truyen_top_view">Truyện top view</string>
+     <string name="content">Nội dung</string>
++    <string name="title_activity_quan_ly">QuanLy</string>
++    <string name="tab_text_1">Tab 1</string>
++    <string name="tab_text_2">Tab 2</string>
+ </resources>
+\ No newline at end of file
+Index: app/src/main/java/com/ak/doctruyenchu/ui/moduleView/adapter/HolderOnClick.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/ak/doctruyenchu/ui/moduleView/adapter/HolderOnClick.java b/app/src/main/java/com/ak/doctruyenchu/ui/INTERFACE/HolderOnClick.java
+rename from app/src/main/java/com/ak/doctruyenchu/ui/moduleView/adapter/HolderOnClick.java
+rename to app/src/main/java/com/ak/doctruyenchu/ui/INTERFACE/HolderOnClick.java
+--- a/app/src/main/java/com/ak/doctruyenchu/ui/moduleView/adapter/HolderOnClick.java	(revision 4e732abeb089e9391817582535edbdb70a4f36bd)
++++ b/app/src/main/java/com/ak/doctruyenchu/ui/INTERFACE/HolderOnClick.java	(date 1649859863231)
+@@ -1,4 +1,4 @@
+-package com.ak.doctruyenchu.ui.moduleView.adapter;
++package com.ak.doctruyenchu.ui.INTERFACE;
+ 
+ import com.ak.doctruyenchu.models.TRUYEN;
+ 

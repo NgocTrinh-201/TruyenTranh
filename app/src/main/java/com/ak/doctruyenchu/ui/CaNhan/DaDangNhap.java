@@ -20,6 +20,8 @@ import com.ak.doctruyenchu.R;
 import com.ak.doctruyenchu.models.USER;
 import com.ak.doctruyenchu.ui.CaNhan.ChinhSuaThongTin.ChinhSuaThongTin;
 import com.ak.doctruyenchu.ui.DangTruyen.DangTruyen;
+import com.ak.doctruyenchu.ui.DangTruyen.QuanLyDangTruyen.QuanLy;
+import com.ak.doctruyenchu.ui.DangTruyen.QuanLyDangTruyen.QuanLyDangTruyen;
 import com.ak.doctruyenchu.ui.ThongTinTruyen.ThongTinTruyen;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -154,7 +156,7 @@ public class DaDangNhap extends Fragment {
         bt_dang_truyen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), DangTruyen.class));
+                startActivity(new Intent(getContext(), QuanLy.class));
             }
         });
 

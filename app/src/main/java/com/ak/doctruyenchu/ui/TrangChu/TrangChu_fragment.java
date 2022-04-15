@@ -40,6 +40,10 @@ public class TrangChu_fragment extends Fragment {
     //
     private View view;
     private SearchView searchView;
+    private ModuleView2 moduleView2 = new ModuleView2();
+    private ModuleView1 moduleView1 = new ModuleView1();
+    private ModuleView2 moduleView3 = new ModuleView2();
+    private ModuleView2 moduleView4 = new ModuleView2();
 
     public TrangChu_fragment() {
         // Required empty public constructor
@@ -78,52 +82,60 @@ public class TrangChu_fragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_trang_chu_fragment, container, false);
 
-        Log.e("Color",""+R.color.white);
 
-        unitView();
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        unitView();
+
+        setView(moduleView1,R.id.home_frg1);
+        setView(moduleView2,R.id.home_frg2);
+        setView(moduleView3,R.id.home_frg3);
+        setView(moduleView4,R.id.home_frg4);
+    }
+
     private void unitView(){
-        ModuleView1 moduleView1 = new ModuleView1();
-        new Comco().layTopTruyenMoiNhat(10, new Comco.DataRecived() {
+
+        moduleView1.setModule(new Module(getContext().getString(R.string.truyen_moi_nhat),false));
+        Comco.layTopTruyenMoiNhat(10, new Comco.DataRecived() {
             @Override
             public void complete(ArrayList<TRUYEN> truyenArrayList) {
-                moduleView1.setModule(new Module(getContext().getString(R.string.truyen_moi_nhat),false),truyenArrayList);
-                setView(moduleView1,R.id.home_frg1);
+                moduleView1.setArray(truyenArrayList);
             }
         });
 
-        //
-        ModuleView2 moduleView2 = new ModuleView2();
-        new Comco().laytTopTruyenDeCu(10,new Comco.DataRecived() {
+
+        moduleView2.setModule(new Module(getString(R.string.truyen_de_cu),2,false,R.color.black));
+        Comco.laytTopTruyenDeCu(10,new Comco.DataRecived() {
             @Override
             public void complete(ArrayList<TRUYEN> truyenArrayList) {
-                moduleView2.setModule(new Module(getString(R.string.truyen_de_cu),2,false,R.color.black),truyenArrayList);
-                setView(moduleView2,R.id.home_frg2);
+                moduleView2.setArray(truyenArrayList);
+                Log.e("Error",""+truyenArrayList.size());
             }
         });
 
-        ModuleView2 moduleView3 = new ModuleView2();
+        moduleView3.setModule(new Module(getString(R.string.truyen_top_rate),2,false,R.color.white,R.color.harbor_rat));
         Comco.laytTopRateTruyen(10,new Comco.DataRecived() {
             @Override
             public void complete(ArrayList<TRUYEN> truyenArrayList) {
-                moduleView3.setModule(new Module(getString(R.string.truyen_top_rate),2,false),truyenArrayList);
-                setView(moduleView3,R.id.home_frg3);
+                moduleView3.setArray(truyenArrayList);
+
             }
         });
 
-        ModuleView2 moduleView4 = new ModuleView2();
+        moduleView4.setModule(new Module(getString(R.string.truyen_top_view),1,false,R.color.black));
         Comco.laytTopViewTruyen(10,new Comco.DataRecived() {
             @Override
             public void complete(ArrayList<TRUYEN> truyenArrayList) {
-                moduleView4.setModule(new Module(getString(R.string.truyen_top_view),1,false,R.color.black),truyenArrayList);
-                setView(moduleView4,R.id.home_frg4);
+                moduleView4.setArray(truyenArrayList);
+
             }
         });
 
     }
-
     private void setView(Fragment fragment,int id){
         getChildFragmentManager()
                 .beginTransaction()

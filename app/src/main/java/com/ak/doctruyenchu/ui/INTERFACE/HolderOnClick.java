@@ -1,4 +1,4 @@
-package com.ak.doctruyenchu.ui.moduleView.adapter;
+package com.ak.doctruyenchu.ui.INTERFACE;
 
 import com.ak.doctruyenchu.models.TRUYEN;
 

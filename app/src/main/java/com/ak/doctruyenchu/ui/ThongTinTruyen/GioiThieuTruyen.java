@@ -106,7 +106,7 @@ public class GioiThieuTruyen extends Fragment {
                 new Comco().layTruyenCungTacGia(10,truyen.getTac_gia(),tentruyen, new Comco.DataRecived() {
                     @Override
                     public void complete(ArrayList<TRUYEN> truyenArrayList) {
-                        moduleView2.setModule(new Module(getString(R.string.truyen_cung_tac_gia),1,false),truyenArrayList);
+                        moduleView2.setModuleAndArray(new Module(getString(R.string.truyen_cung_tac_gia),1,false),truyenArrayList);
                         setView(moduleView2,R.id.frg_truyen_cung_tac_gia_GTT);
                     }
                 });

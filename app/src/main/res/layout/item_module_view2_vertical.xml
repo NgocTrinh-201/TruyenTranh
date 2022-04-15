@@ -42,6 +42,7 @@
                 android:layout_gravity="start"
                 android:ellipsize="end"
                 android:maxLines="2"
+                android:maxWidth="200sp"
                 android:text="@string/loading"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -53,6 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:ellipsize="end"
+                android:maxWidth="200sp"
                 android:maxLines="2"
                 android:text="@string/loading"
                 tools:ignore="MissingConstraints" />
@@ -63,6 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:ellipsize="end"
+                android:maxWidth="200sp"
                 android:maxLines="2"
                 android:text="@string/loading"
                 tools:ignore="MissingConstraints" />

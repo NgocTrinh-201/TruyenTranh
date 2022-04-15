@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/public_truyen"
+        android:title="Public" />
+    <item
+        android:id="@+id/edit_truyen"
+        android:title="Chỉnh sửa thông tin" />
+    <item
+        android:id="@+id/them_chuong"
+        android:title="Thêm chương" />
+    <item
+        android:id="@+id/delete_truyen"
+        android:title="Xóa truyện" />
+</menu>

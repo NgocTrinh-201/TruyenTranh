@@ -1,38 +1,25 @@
 package com.ak.doctruyenchu.ui.ThongTinTruyen;
 
-import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.CountDownTimer;
-import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
-import com.ak.doctruyenchu.Constans.Comco;
 import com.ak.doctruyenchu.Constans.Constans;
 import com.ak.doctruyenchu.R;
 import com.ak.doctruyenchu.models.BinhLuan;
-import com.ak.doctruyenchu.models.DanhGia;
-import com.ak.doctruyenchu.models.USER;
 import com.ak.doctruyenchu.ui.CaNhan.ChuaDangNhap;
-import com.ak.doctruyenchu.ui.CaNhan.DaDangNhap;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
+import com.ak.doctruyenchu.ui.ThongTinTruyen.adapter.BinhLuanAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;

@@ -13,6 +13,11 @@
         android:theme="@style/Theme.DocTruyenChu"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.DangTruyen.QuanLyDangTruyen.QuanLy"
+            android:exported="false"
+            android:label="@string/title_activity_quan_ly"
+            android:theme="@style/Theme.DocTruyenChu.NoActionBar" />
+        <activity
             android:name=".ui.DangTruyen.QuanLyDangTruyen.QuanLyDangTruyen"
             android:exported="false" />
         <activity

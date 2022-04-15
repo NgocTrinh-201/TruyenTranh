@@ -47,7 +47,6 @@ public class TuTruyen extends Fragment {
     private ModuleView2 moduleView2 = new ModuleView2();
     private boolean clickOption;
     private int positions;
-
     private ModuleView2 m4 = new ModuleView2();
 
     public TuTruyen() {
@@ -88,7 +87,7 @@ public class TuTruyen extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.tu_truyen_fragment, container, false);
 
-        runA();
+
         return view;
     }
 
@@ -117,11 +116,11 @@ public class TuTruyen extends Fragment {
     public void onResume() {
         super.onResume();
 
+        runA();
         if (Constans.AUTH.getCurrentUser()!=null){
-
             setView(moduleView2,R.id.fr1);
-            setView(m4,R.id.fr4);
         }
+        setView(m4,R.id.fr4);
 
         endBottomSheet();
 
@@ -132,7 +131,6 @@ public class TuTruyen extends Fragment {
         NestedScrollView nestedScrollView = view.findViewById(R.id.bottom_sheet_tu_truyen);
         CoordinatorLayout coordinatorLayout = view.findViewById(R.id.coordinator_layout_tu_truyen);
         BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(nestedScrollView);
-
         m4.setEventForOptionOnClick(new OptionsOnClick() {
             @Override
             public void onClick(TRUYEN truyen, int position) {
@@ -153,18 +151,19 @@ public class TuTruyen extends Fragment {
                             .replace(R.id.bottom_sheet_frg_tu_truyen,fragment)
                             .commit();
 
-                    Module md = new Module(getString(R.string.truyen_de_cu),2,false);
-                    ModuleView1 dCu = new ModuleView1();
-                    dCu.setModule(md,new ArrayList<>());
-                    Comco.laytTopTruyenDeCu(10, new Comco.DataRecived() {
-                        @Override
-                        public void complete(ArrayList<TRUYEN> truyenArrayList) {
-                            dCu.setModule(md,truyenArrayList);
-                            getParentFragmentManager().beginTransaction()
-                                    .replace(R.id.frg_truyen_moi_tu_truyen,dCu)
-                                    .commit();
-                        }
-                    });
+//                    Module md = new Module(getString(R.string.truyen_de_cu),2,false);
+//                    ModuleView1 dCu = new ModuleView1();
+//                    dCu.setModule(md);
+//
+//                    Comco.laytTopTruyenDeCu(10, new Comco.DataRecived() {
+//                        @Override
+//                        public void complete(ArrayList<TRUYEN> truyenArrayList) {
+//                            dCu.setArray(truyenArrayList);
+//                            getParentFragmentManager().beginTransaction()
+//                                    .replace(R.id.frg_truyen_moi_tu_truyen,dCu)
+//                                    .commit();
+//                        }
+//                    });
 
                 }else {
                     bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HIDDEN);
@@ -177,7 +176,6 @@ public class TuTruyen extends Fragment {
         getParentFragmentManager().setFragmentResultListener("result", this, new FragmentResultListener() {
             @Override
             public void onFragmentResult(@NonNull String requestKey, @NonNull Bundle result) {
-                Log.e("REsult",result.getString(requestKey) + "p "+positions);
                 if (Integer.parseInt(result.getString(requestKey))==1){
                     m4.notifyAdapterDelete(positions);
                     endBottomSheet();
@@ -186,49 +184,37 @@ public class TuTruyen extends Fragment {
             }
         });
 
-//        coordinatorLayout.setOnTouchListener(new View.OnTouchListener() {
-//            @Override
-//            public boolean onTouch(View v, MotionEvent event) {
-//                if (clickOption){
-//                    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-//                    clickOption=false;
-//                }
-//                return true;
-//            }
-//        });
 
         if (Constans.AUTH.getCurrentUser()!=null){
             Module module = new Module(getContext().getString(R.string.truyen_cat_giu),2,false);
-            moduleView2.setModule(module,new ArrayList<>());
+            moduleView2.setModule(module);
             Comco.layLichTuTruyen(new Comco.DataRecived() {
                 @Override
                 public void complete(ArrayList<TRUYEN> truyenArrayList) {
-                    moduleView2.setModule(module,truyenArrayList);
-
+                    moduleView2.setArray(truyenArrayList);
                 }
             });
 
             Module module1 = new Module(Constans.LICH_SU_DOC_TRUYEN,1,true);
-            m4.setModule(module1,new ArrayList<>());
+            m4.setModule(module1);
             Comco.layLichSuDocTruyen(new Comco.DataRecived() {
                 @Override
                 public void complete(ArrayList<TRUYEN> truyenArrayList) {
                     module1.enableOptionButton();
-                    m4.setModule(module1,truyenArrayList);
+                    m4.setArray(truyenArrayList);
 
                 }
             });
         }else {
 
             setView(new ChuaDangNhap(),R.id.fr1);
-            ModuleView2 moduleView2 = new ModuleView2();
+
             Module module = new Module(getString(R.string.truyen_moi_nhat),1,true);
-            moduleView2.setModule(module,new ArrayList<>());
+            m4.setModule(module);
             Comco.layTopTruyenMoiNhat(0, new Comco.DataRecived() {
                 @Override
                 public void complete(ArrayList<TRUYEN> truyenArrayList) {
-                    moduleView2.setModule(module,truyenArrayList);
-                    setView(moduleView2,R.id.fr4);
+                    moduleView2.setArray(truyenArrayList);
                 }
             });
         }

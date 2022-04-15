@@ -1,5 +1,7 @@
 package com.ak.doctruyenchu.models;
 
+import androidx.annotation.NonNull;
+
 import java.util.Date;
 
 
@@ -149,5 +151,11 @@ public class TRUYEN {
 
     public void setSo_luot_rate(int so_luot_rate) {
         this.so_luot_rate = so_luot_rate;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

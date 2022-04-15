@@ -1,13 +1,11 @@
 package com.ak.doctruyenchu.ui.moduleView;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -22,7 +20,7 @@ import com.ak.doctruyenchu.R;
 import com.ak.doctruyenchu.models.TRUYEN;
 import com.ak.doctruyenchu.ui.DanhSachTruyen.DanhSachTruyen;
 import com.ak.doctruyenchu.ui.ThongTinTruyen.ThongTinTruyen;
-import com.ak.doctruyenchu.ui.moduleView.adapter.HolderOnClick;
+import com.ak.doctruyenchu.ui.INTERFACE.HolderOnClick;
 import com.ak.doctruyenchu.ui.moduleView.adapter.ModuleView2Adapter;
 import com.ak.doctruyenchu.ui.moduleView.adapter.OptionsOnClick;
 
@@ -56,6 +54,7 @@ public class ModuleView2 extends Fragment {
 
     public ModuleView2() {
         truyenArrayList = new ArrayList<>();
+        adapter = new ModuleView2Adapter(truyenArrayList);
         // Required empty public constructor
         optionsOnClick = new OptionsOnClick() {
             @Override
@@ -66,9 +65,18 @@ public class ModuleView2 extends Fragment {
 
     }
 
-    public void setModule(Module module,ArrayList<TRUYEN> truyenArrayList){
+    public void setModuleAndArray(Module module,ArrayList<TRUYEN> truyenArrayList){
         this.module = module;
-        this.truyenArrayList = truyenArrayList;
+        this.truyenArrayList.addAll(truyenArrayList);;
+        notifyDataSetChanged();
+    }
+
+    public void setModule(Module module){this.module = module;}
+
+    public void setArray(ArrayList<TRUYEN> truyenArrayList){
+        this.truyenArrayList.clear();
+        this.truyenArrayList.addAll(truyenArrayList);
+        notifyDataSetChanged();
     }
 
     public void setEventForOptionOnClick(OptionsOnClick optionsOnClick){this.optionsOnClick =optionsOnClick;}
@@ -103,6 +111,10 @@ public class ModuleView2 extends Fragment {
 
     public void notifyAdapterDelete(int position){
         adapter.deleteItem(position);
+        notifyDataSetChanged();
+    }
+
+    public void notifyDataSetChanged(){
         adapter.notifyDataSetChanged();
     }
 
@@ -114,11 +126,9 @@ public class ModuleView2 extends Fragment {
 
 //        setUI();
         //
-        adapter = new ModuleView2Adapter(truyenArrayList);
 
         try {
             unitUI();
-            event();
         }catch (NullPointerException e){
             module_name = view.findViewById(R.id.tv_name_mdv2);
             constraintLayout = view.findViewById(R.id.title_mdv2);

@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -52,18 +53,25 @@ public class DanhSachTruyenAdapter extends  RecyclerView.Adapter{
 
     private class ItemHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private ImageView imageView;
-        private TextView ten_truyen, tac_gia;
+        private TextView ten_truyen, tac_gia,view, luot_danh_gia;
+        private RatingBar ratingBar;
         public ItemHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.item_dst_list);
             ten_truyen = itemView.findViewById(R.id.item_ten_truyen_dst);
             tac_gia = itemView.findViewById(R.id.item_tac_gia_dst);
+            view = itemView.findViewById(R.id.item_view_dst);
+            luot_danh_gia = itemView.findViewById(R.id.luot_rate_dst);
+            ratingBar = itemView.findViewById(R.id.rate_dst);
             itemView.setOnClickListener(this::onClick);
         }
 
         public void bind(TRUYEN truyen){
             ten_truyen.setText(truyen.getTen_truyen());
             tac_gia.setText(truyen.getTac_gia());
+            view.setText(" "+truyen.getSo_view()+" lượt xem");
+            luot_danh_gia.setText("("+truyen.getSo_luot_rate()+" lượt)");
+            ratingBar.setRating(truyen.getRate());
             Picasso.get()
                     .load(truyen.getUrl_anh_nen_truyen())
                     .into(imageView);

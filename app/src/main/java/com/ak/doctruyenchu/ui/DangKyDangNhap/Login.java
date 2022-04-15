@@ -58,7 +58,6 @@ public class Login extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.toString()==null || s.toString().equals("")){
-                    Toast.makeText(Login.this, "Rong", Toast.LENGTH_SHORT).show();
                     email.setError(getString(R.string.is_blank));
                     checkError=true;
                 }else checkError=false;
