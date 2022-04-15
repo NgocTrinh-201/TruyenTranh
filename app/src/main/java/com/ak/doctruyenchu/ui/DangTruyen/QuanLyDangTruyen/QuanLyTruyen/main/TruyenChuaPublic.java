@@ -1,4 +1,4 @@
-package com.ak.doctruyenchu.ui.DangTruyen.QuanLyDangTruyen.ui.main;
+package com.ak.doctruyenchu.ui.DangTruyen.QuanLyDangTruyen.QuanLyTruyen.main;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +21,7 @@ import com.ak.doctruyenchu.Constans.Constans;
 import com.ak.doctruyenchu.R;
 import com.ak.doctruyenchu.models.TRUYEN;
 import com.ak.doctruyenchu.ui.DangTruyen.DangTruyen;
+import com.ak.doctruyenchu.ui.DangTruyen.QuanLyDangTruyen.QuanLyChuong.Them_Sua_Chuong;
 import com.ak.doctruyenchu.ui.DangTruyen.QuanLyDangTruyen.adapter.QLDTadapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -115,14 +116,16 @@ public class TruyenChuaPublic extends Fragment {
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()){
                             case R.id.public_truyen:
+                                String spath = Constans.QUAN_LY_DANG_TRUYEN +"/"+ Constans.AUTH.getCurrentUser().getUid() +"/"+Constans.CHUA_PUBLIC + "/" + Constans.TRUYEN + "/" + truyen.getTen_truyen();
+                                Intent sintent = new Intent(getContext(), Them_Sua_Chuong.class);
+                                sintent.putExtra("path",spath);
+                                startActivity(sintent);
                                 break;
                             case R.id.edit_truyen:
                                 String path = Constans.QUAN_LY_DANG_TRUYEN +"/"+ Constans.AUTH.getCurrentUser().getUid() +"/"+Constans.CHUA_PUBLIC + "/" + Constans.TRUYEN + "/" + truyen.getTen_truyen();
                                 Intent intent = new Intent(getContext(), DangTruyen.class);
                                 intent.putExtra("path",path);
                                 startActivity(intent);
-                                break;
-                            case R.id.them_chuong:
                                 break;
                             case R.id.delete_truyen:
                                 Constans.STORAGE.getReference(Constans.PICTURE).child(Constans.ANH_BIA_TRUYEN).child(Constans.AUTH.getCurrentUser().getUid())

@@ -23,6 +23,7 @@
         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/layout/activity_qlchuong.xml" value="0.2828125" />
         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/layout/activity_quan_ly.xml" value="0.25" />
         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/layout/activity_quan_ly_dang_truyen.xml" value="0.33" />
+        <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/layout/activity_them_sua_chuong.xml" value="0.3625" />
         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/layout/activity_thong_tin_truyen.xml" value="0.20260416666666667" />
         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/layout/app_bar_qlchuong.xml" value="0.2828125" />
         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/layout/binh_luan_va_danh_gia.xml" value="0.2980072463768116" />
@@ -77,6 +78,7 @@
         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/layout/zd.xml" value="0.2957427536231884" />
         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/menu/bottom_nav_menu.xml" value="0.3625" />
         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/menu/menu_item_dang_truyen.xml" value="0.3625" />
+        <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/menu/menu_item_dapublic.xml" value="0.3625" />
         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/menu/thong_tin_truyen_menu.xml" value="0.2755208333333333" />
         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/mipmap-anydpi-v26/profile.xml" value="0.21875" />
         <entry key="..\:/Android Studio/DocTruyenChu/app/src/main/res/mipmap-anydpi-v26/profile_round.xml" value="0.21875" />

@@ -1,12 +1,10 @@
-package com.ak.doctruyenchu.ui.DangTruyen.QuanLyDangTruyen.ui.main;
+package com.ak.doctruyenchu.ui.DangTruyen.QuanLyDangTruyen.QuanLyTruyen.main;
 
 import android.content.Context;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-
-import com.ak.doctruyenchu.R;
 
 
 /**

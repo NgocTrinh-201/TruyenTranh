@@ -5,13 +5,11 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,13 +17,9 @@ import com.ak.doctruyenchu.Constans.Constans;
 import com.ak.doctruyenchu.R;
 import com.ak.doctruyenchu.models.USER;
 import com.ak.doctruyenchu.ui.CaNhan.ChinhSuaThongTin.ChinhSuaThongTin;
-import com.ak.doctruyenchu.ui.DangTruyen.DangTruyen;
-import com.ak.doctruyenchu.ui.DangTruyen.QuanLyDangTruyen.QuanLy;
-import com.ak.doctruyenchu.ui.DangTruyen.QuanLyDangTruyen.QuanLyDangTruyen;
-import com.ak.doctruyenchu.ui.ThongTinTruyen.ThongTinTruyen;
+import com.ak.doctruyenchu.ui.DangTruyen.QuanLyDangTruyen.QuanLyTruyen.QuanLy;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.firebase.database.DataSnapshot;
 import com.squareup.picasso.Picasso;
 

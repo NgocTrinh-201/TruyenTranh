@@ -42,7 +42,7 @@ public class DangTruyen extends AppCompatActivity {
     private ImageView anh_bia;
     private ImageButton bt_back;
     private TextView bt_them;
-    private TextInputEditText ten_truyen, mo_ta;
+    private TextInputEditText ten_truyen, mo_ta, tac_gia;
     private Uri uri;
     private LinearLayout prog;
     private byte[] imagedata;
@@ -58,6 +58,7 @@ public class DangTruyen extends AppCompatActivity {
         bt_them=binding.btThem;
         prog = binding.layoutProg;
         ten_truyen=binding.themTruyenTenTruyen;
+        tac_gia = binding.themTruyenTenTacGia;
         mo_ta=binding.themTruyenMoTa;
         uri= Uri.parse("android.resource://" + getPackageName() + "/" + R.drawable.book_background_default);
         anh_bia.setDrawingCacheEnabled(true);
@@ -90,8 +91,9 @@ public class DangTruyen extends AppCompatActivity {
             bt_them.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String tenTruyen = ten_truyen.getText().toString().trim();
+                    String tenTruyen = ten_truyen.getText().toString().replace(".","。").trim();
                     String moTa = mo_ta.getText().toString().trim();
+                    String tacGia = tac_gia.getText().toString().trim();
                     if (checkError()){
                         Toast.makeText(DangTruyen.this, "Chưa đủ thông tin hoặc tên truyện có chứa dấu chấm (.).", Toast.LENGTH_SHORT).show();
                     }else {
@@ -111,6 +113,7 @@ public class DangTruyen extends AppCompatActivity {
                                                     @Override
                                                     public void onSuccess(Uri uri) {
                                                         truyen.themTruyen(tenTruyen,moTa,uri.toString());
+                                                        truyen.setTac_gia(tacGia);
                                                         Constans.DATABASE.getReference(Constans.QUAN_LY_DANG_TRUYEN).child(Constans.AUTH.getCurrentUser().getUid()).child(Constans.CHUA_PUBLIC)
                                                                 .child(Constans.TRUYEN)
                                                                 .child(tenTruyen).setValue(truyen)
@@ -166,8 +169,9 @@ public class DangTruyen extends AppCompatActivity {
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                 imagedata = baos.toByteArray();
 
-                String tenTruyen = ten_truyen.getText().toString().trim();
+                String tenTruyen = ten_truyen.getText().toString().replace(".","。").trim();
                 String moTa = mo_ta.getText().toString().trim();
+                String tacGia = tac_gia.getText().toString().trim();
                 if (checkError()){
                     Toast.makeText(DangTruyen.this, "Chua du thong tin", Toast.LENGTH_SHORT).show();
                 }else {
@@ -197,7 +201,7 @@ public class DangTruyen extends AppCompatActivity {
                                         .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                             @Override
                                             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                                b(tenTruyen,moTa,truyen);
+                                                b(tenTruyen,moTa,tacGia,truyen);
                                             }
                                         });
 
@@ -211,7 +215,7 @@ public class DangTruyen extends AppCompatActivity {
         });
     }
 
-    private void b(String tenTruyen1, String moTa1, TRUYEN truyen1){
+    private void b(String tenTruyen1, String moTa1,String tacGia1, TRUYEN truyen1){
         Constans.STORAGE.getReference(Constans.PICTURE).child(Constans.ANH_BIA_TRUYEN).child(Constans.AUTH.getCurrentUser().getUid())
                 .child(tenTruyen1)
                 .getDownloadUrl()
@@ -221,6 +225,7 @@ public class DangTruyen extends AppCompatActivity {
                         TRUYEN x = truyen1;
                         x.setTen_truyen(tenTruyen1);
                         x.setMo_ta(moTa1);
+                        x.setTac_gia(tacGia1);
                         x.setUrl_anh_nen_truyen(uri.toString());
 
                         Constans.DATABASE.getReference(Constans.QUAN_LY_DANG_TRUYEN).child(Constans.AUTH.getCurrentUser().getUid()).child(Constans.CHUA_PUBLIC)
@@ -244,10 +249,13 @@ public class DangTruyen extends AppCompatActivity {
     }
 
     private boolean checkError(){
-        boolean errorCheck = true;
-        if (ten_truyen.getText().toString().trim().isEmpty()||mo_ta.getText().toString().trim().isEmpty() || ten_truyen.getText().toString().matches("(.*).(.*)") || ten_truyen.getText().toString().trim()==null||mo_ta.getText().toString().trim()==null)
+        boolean errorCheck = false;
+        if (ten_truyen.getText().toString().trim().isEmpty()||mo_ta.getText().toString().trim().isEmpty() || tac_gia.getText().toString().trim().isEmpty())
+        {
             errorCheck =true;
+        }
         else errorCheck = false;
+
         return errorCheck;
     }
 

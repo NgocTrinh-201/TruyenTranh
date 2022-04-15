@@ -3,12 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.DangTruyen.QuanLyDangTruyen.ui.main.TruyenDaPublic">
+    tools:context=".ui.DangTruyen.QuanLyDangTruyen.QuanLyTruyen.main.TruyenDaPublic">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcv_dapublic"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="da public" />
+        android:layout_height="match_parent"/>
 
 </FrameLayout>

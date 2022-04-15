@@ -47,9 +47,11 @@ public class GioiThieuTruyen extends Fragment {
     private View view;
     private TextView mo_ta;
     private String tentruyen;
+    private ModuleView2 moduleView2;
 
     public GioiThieuTruyen() {
         // Required empty public constructor
+        moduleView2 = new ModuleView2();
     }
 
     /**
@@ -87,9 +89,10 @@ public class GioiThieuTruyen extends Fragment {
         // Inflate the layout for this fragment
 
         view = inflater.inflate(R.layout.fragment_gioi_thieu_truyen, container, false);
+        moduleView2.setModule(new Module(getString(R.string.truyen_cung_tac_gia),1,false));
         unitUI();
         run();
-
+        setView(moduleView2,R.id.frg_truyen_cung_tac_gia_GTT);
         return view;
     }
 
@@ -101,13 +104,12 @@ public class GioiThieuTruyen extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 TRUYEN truyen = snapshot.getValue(TRUYEN.class);
                 mo_ta.setText(truyen.getMo_ta());
-                ModuleView2 moduleView2 = new ModuleView2();
+
                 //moduleView2.setModule(new Module(  false,1,Constans.LAY_TRUYEN_THEO_TEN_TAC_GIA,truyen.getTac_gia(),"Truyện cùng tác giả",Constans.VIEW_GIOI_THIEU_TRUYEN,truyen.getTen_truyen()));
-                new Comco().layTruyenCungTacGia(10,truyen.getTac_gia(),tentruyen, new Comco.DataRecived() {
+                Comco.layTruyenCungTacGia(10,truyen.getTac_gia(),tentruyen, new Comco.DataRecived() {
                     @Override
                     public void complete(ArrayList<TRUYEN> truyenArrayList) {
-                        moduleView2.setModuleAndArray(new Module(getString(R.string.truyen_cung_tac_gia),1,false),truyenArrayList);
-                        setView(moduleView2,R.id.frg_truyen_cung_tac_gia_GTT);
+                        moduleView2.setArray(truyenArrayList);
                     }
                 });
             }

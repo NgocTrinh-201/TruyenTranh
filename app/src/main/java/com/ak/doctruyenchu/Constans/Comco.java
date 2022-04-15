@@ -201,7 +201,7 @@ public class Comco {
             z=1000;
         else z=top;
         ArrayList<TRUYEN> truyenArrayList = new ArrayList<>();
-        Query query = Constans.DATABASE.getReference().child("TRUYEN").orderByChild("ngay_dang/time").limitToFirst(z);
+        Query query = Constans.DATABASE.getReference().child("TRUYEN").orderByChild("ngay_dang/time").limitToLast(z);
         query.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
