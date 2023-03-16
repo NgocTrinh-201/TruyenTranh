@@ -1,6 +1,7 @@
 package com.ak.doctruyenchu.ui.moduleView.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +34,6 @@ public class ModuleView2Adapter extends RecyclerView.Adapter {
         this.truyenArrayList=truyenArrayList;
         this.textColor = 0;
         this.orientationVertical = false;
-        this.orientationVertical = false;
     }
 
     public void EnableOptionButton(boolean enableOptionButton){
@@ -56,6 +56,7 @@ public class ModuleView2Adapter extends RecyclerView.Adapter {
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         if (orientationVertical){
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_module_view2_vertical,parent,false);
             return new  ModuleView2Adapter.ItemHolderVertical(view);
@@ -66,6 +67,7 @@ public class ModuleView2Adapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+
         if (orientationVertical)
             ((ModuleView2Adapter.ItemHolderVertical) holder).blind(truyenArrayList.get(position));
         else
@@ -74,6 +76,7 @@ public class ModuleView2Adapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
+
         return truyenArrayList.size();
     }
 

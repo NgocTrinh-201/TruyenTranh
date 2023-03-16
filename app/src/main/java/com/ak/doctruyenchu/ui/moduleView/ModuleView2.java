@@ -12,7 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.ak.doctruyenchu.Constans.Constans;
@@ -45,10 +45,10 @@ public class ModuleView2 extends Fragment {
     private View view;
     private RecyclerView recyclerView;
     private ModuleView2Adapter adapter;
-    private TextView module_name,more;
+    private TextView module_name,more, empty;
     private Module module;
     private ConstraintLayout constraintLayout;
-    private LinearLayout background;
+    private RelativeLayout background;
     private ArrayList<TRUYEN> truyenArrayList;
     private OptionsOnClick optionsOnClick;
 
@@ -77,6 +77,7 @@ public class ModuleView2 extends Fragment {
         this.truyenArrayList.clear();
         this.truyenArrayList.addAll(truyenArrayList);
         notifyDataSetChanged();
+
     }
 
     public void setEventForOptionOnClick(OptionsOnClick optionsOnClick){this.optionsOnClick =optionsOnClick;}
@@ -112,6 +113,7 @@ public class ModuleView2 extends Fragment {
     public void notifyAdapterDelete(int position){
         adapter.deleteItem(position);
         notifyDataSetChanged();
+
     }
 
     public void notifyDataSetChanged(){
@@ -143,6 +145,7 @@ public class ModuleView2 extends Fragment {
         return view;
     }
     private void event() {
+
         constraintLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -151,6 +154,18 @@ public class ModuleView2 extends Fragment {
                 if (module.moduleName.equals(Constans.TRUYEN_CUNG_TAC_GIA))
                     intent.putExtra(Constans.TAC_GIA_KEY,truyenArrayList.get(0).getTac_gia());
                 startActivity(intent);
+            }
+        });
+
+        adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+                if (adapter.getItemCount()==0){
+                    setEmpty();
+                }else {
+                    setUnEmpty();
+                }
             }
         });
 
@@ -165,9 +180,14 @@ public class ModuleView2 extends Fragment {
     }
 
     private void unitUI() {
+        empty = view.findViewById(R.id.empty_mdv2);
         background = view.findViewById(R.id.background_module_view2);
+
+
+
         if ( module.backgroungColor!=0){
             background.setBackground(getContext().getDrawable(module.backgroungColor));
+            empty.setTextColor(getContext().getColor(R.color.white));
         }
         constraintLayout = view.findViewById(R.id.title_mdv2);
         module_name = view.findViewById(R.id.tv_name_mdv2);
@@ -188,8 +208,23 @@ public class ModuleView2 extends Fragment {
         else
             x.setOrientation(GridLayoutManager.HORIZONTAL);
         recyclerView.setLayoutManager(x);
+
+        setEmpty();
+
     }
 
+
+    private void setEmpty(){
+        recyclerView.setVisibility(View.GONE);
+        empty.setVisibility(View.VISIBLE);
+        constraintLayout.setEnabled(false);
+    }
+
+    private void setUnEmpty(){
+        recyclerView.setVisibility(View.VISIBLE);
+        empty.setVisibility(View.GONE);
+        constraintLayout.setEnabled(true);
+    }
 
 
 }

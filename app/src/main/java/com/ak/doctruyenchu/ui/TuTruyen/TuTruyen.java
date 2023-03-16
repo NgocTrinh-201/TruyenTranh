@@ -196,13 +196,12 @@ public class TuTruyen extends Fragment {
             });
 
             Module module1 = new Module(Constans.LICH_SU_DOC_TRUYEN,1,true);
+            module1.enableOptionButton();
             m4.setModule(module1);
             Comco.layLichSuDocTruyen(new Comco.DataRecived() {
                 @Override
                 public void complete(ArrayList<TRUYEN> truyenArrayList) {
-                    module1.enableOptionButton();
                     m4.setArray(truyenArrayList);
-
                 }
             });
         }else {
@@ -214,7 +213,7 @@ public class TuTruyen extends Fragment {
             Comco.layTopTruyenMoiNhat(0, new Comco.DataRecived() {
                 @Override
                 public void complete(ArrayList<TRUYEN> truyenArrayList) {
-                    moduleView2.setArray(truyenArrayList);
+                    m4.setArray(truyenArrayList);
                 }
             });
         }

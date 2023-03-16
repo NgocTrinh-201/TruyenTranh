@@ -1,23 +1,11 @@
 package com.ak.doctruyenchu;
 
 import android.os.Bundle;
-import android.os.Trace;
-import android.util.Log;
-
-import com.ak.doctruyenchu.Constans.Constans;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.database.DataSnapshot;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
-
-
-
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
 
@@ -35,6 +23,14 @@ public class MainActivity extends AppCompatActivity {
 //        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(bottomNavigationView, navController);
 
+//        Constans.DATABASE.getReference(Constans.TRUYEN).child("hfsfh adh")
+//                .get()
+//                .addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
+//                    @Override
+//                    public void onSuccess(DataSnapshot dataSnapshot) {
+//
+//                    }
+//                });
 
     }
 

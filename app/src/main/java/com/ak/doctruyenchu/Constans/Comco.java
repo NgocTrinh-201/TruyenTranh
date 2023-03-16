@@ -1,6 +1,8 @@
 package com.ak.doctruyenchu.Constans;
 
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -317,17 +319,16 @@ public class Comco {
                     @Override
                     public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                         LICHSU lichsu = snapshot.getValue(LICHSU.class);
-
-                        System.out.println("test "+lichsu.getTen_truyen());
                         Constans.DATABASE.getReference(Constans.TRUYEN).child(lichsu.getTen_truyen())
                                 .get()
                                 .addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
                                     @Override
                                     public void onSuccess(DataSnapshot dataSnapshot) {
                                         TRUYEN truyen = dataSnapshot.getValue(TRUYEN.class);
-                                        truyen.setChap_moi_nhat(lichsu.getTen_chuong());
-                                        if (truyen!=null)
+                                        if (truyen!=null){
+                                            truyen.setChap_moi_nhat(lichsu.getTen_chuong());
                                             truyenArrayList.add(0,truyen);
+                                        }
 //                                        if (i==snapshot.getChildrenCount()-1)
                                             dataRecived.complete(truyenArrayList);
                                     }
@@ -411,9 +412,12 @@ public class Comco {
                                     @Override
                                     public void onSuccess(DataSnapshot dataSnapshot) {
                                         TRUYEN truyen = dataSnapshot.getValue(TRUYEN.class);
-                                        truyen.setChap_moi_nhat(lichsu.getTen_chuong());
-                                        if (truyen!=null)
+
+                                        if (truyen!=null){
+                                            truyen.setChap_moi_nhat(lichsu.getTen_chuong());
                                             truyenArrayList.add(0,truyen);
+                                        }
+
 //                                        if (i==snapshot.getChildrenCount()-1)
                                         dataRecived.complete(truyenArrayList);
                                     }

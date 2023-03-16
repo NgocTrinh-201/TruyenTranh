@@ -92,8 +92,12 @@ public class GioiThieuTruyen extends Fragment {
         moduleView2.setModule(new Module(getString(R.string.truyen_cung_tac_gia),1,false));
         unitUI();
         run();
-        setView(moduleView2,R.id.frg_truyen_cung_tac_gia_GTT);
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     private void run() {
@@ -104,12 +108,13 @@ public class GioiThieuTruyen extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 TRUYEN truyen = snapshot.getValue(TRUYEN.class);
                 mo_ta.setText(truyen.getMo_ta());
-
                 //moduleView2.setModule(new Module(  false,1,Constans.LAY_TRUYEN_THEO_TEN_TAC_GIA,truyen.getTac_gia(),"Truyện cùng tác giả",Constans.VIEW_GIOI_THIEU_TRUYEN,truyen.getTen_truyen()));
                 Comco.layTruyenCungTacGia(10,truyen.getTac_gia(),tentruyen, new Comco.DataRecived() {
                     @Override
                     public void complete(ArrayList<TRUYEN> truyenArrayList) {
                         moduleView2.setArray(truyenArrayList);
+                        if (truyenArrayList.size()!=0)
+                            setView(moduleView2,R.id.frg_truyen_cung_tac_gia_GTT);
                     }
                 });
             }

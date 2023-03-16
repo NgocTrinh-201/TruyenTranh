@@ -1,10 +1,13 @@
 package com.ak.doctruyenchu.ui.DangTruyen.QuanLyDangTruyen.QuanLyChuong;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -13,7 +16,9 @@ import com.ak.doctruyenchu.databinding.ActivityThemSuaChuongBinding;
 import com.ak.doctruyenchu.models.CHUONG;
 import com.ak.doctruyenchu.models.TRUYEN;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.squareup.picasso.Picasso;
 
 public class Them_Sua_Chuong extends AppCompatActivity {
@@ -117,16 +122,42 @@ public class Them_Sua_Chuong extends AppCompatActivity {
                 public void onSuccess(DataSnapshot dataSnapshot) {
                     truyen = dataSnapshot.getValue(TRUYEN.class);
                     if (truyen!=null){
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Constans.DATABASE.getReference(Constans.CHUONG).child(truyen.getTen_truyen())
+                                        .addChildEventListener(new ChildEventListener() {
+                                            @Override
+                                            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                                soChuong++;
+                                                Log.e("So chung",""+soChuong);
+                                            }
+
+                                            @Override
+                                            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                            }
+
+                                            @Override
+                                            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                                            }
+
+                                            @Override
+                                            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
+                            }
+                        }).start();
                         binding.tenTruyen.setText(truyen.getTen_truyen());
                         binding.chuongMoiNhat.setText(truyen.getChap_moi_nhat());
                         Picasso.get().load(truyen.getUrl_anh_nen_truyen()).into(binding.imgBiaTruyen);
-                        Constans.DATABASE.getReference(Constans.CHUONG).child(truyen.getTen_truyen()).get()
-                                .addOnSuccessListener(new OnSuccessListener<DataSnapshot>() {
-                                    @Override
-                                    public void onSuccess(DataSnapshot dataSnapshot) {
-                                        soChuong++;
-                                    }
-                                });
                     }
                 }
             });

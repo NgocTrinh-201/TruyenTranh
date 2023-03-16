@@ -5,16 +5,12 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.method.ScrollingMovementMethod;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowInsets;
-import android.widget.ScrollView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.ak.doctruyenchu.Constans.Constans;
 import com.ak.doctruyenchu.databinding.ActivityDocTruyenBinding;
 import com.ak.doctruyenchu.models.CHUONG;
@@ -23,9 +19,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
-
 import java.util.ArrayList;
-import java.util.concurrent.Executor;
 
 
 /**
